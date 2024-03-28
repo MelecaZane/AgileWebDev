@@ -1,7 +1,7 @@
 # IDEAS
 LFG or 'Looking for Group'.
 
-https://destinytracker.com/destiny/lfg
+https://destinytracker.com/destiny/lfg \n
 https://gamerlinkapp.com/
 
 # FEATURES
