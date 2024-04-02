@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(32, 33, 35);
+}
+
+.navbar-brand {
+    padding-left: 12px;
+}
+
+#newPostBox {
+    background-color: rgb(33,37,41);
+}
+
+.text-break {
+    color: aliceblue;
+}
