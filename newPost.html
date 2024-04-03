@@ -32,16 +32,27 @@
         </div>
       </nav>
 
-      <div class="col-sm-9" id="newPostBox">
-        <form class="row">
+      <div class="col-sm-9" id="newPostBox" style="padding: 20px;">
+        <form id="newPostForm">
+          <div class="row" id="newPostRowOne">
             <div class="col-sm-1 text-break text-end">Game:</div>
-            <select type="date" class="col-sm-1">
+            <select type="date" class="col-sm-1"> <!--Likely have a list of games in the db and a function to create this dropdown with them all-->
                 <option value="None" selected>None</option>
                 <option value="Game1">Game1</option>
                 <option value="Game2">Game2</option>
             </select>
             <div class="col-sm-2 text-break text-end">Players:</div>
             <select class="1-100 col-sm-2" style="max-width: 90px;"></select>
+          </div>
+          <br>
+          <div class="row" id="newPostRowTwo">
+            <div class="col-sm-1 text-break text-end">Description:</div>
+            <textarea class="col-sm-10" rows="4" placeholder="Description of desired activity here"></textarea>
+          </div>
+          <br>
+          <div class="row" id="newPostRowThree">
+            <input type="submit" class="col-sm-1 offset-11" style="width:7%" value="Post">
+          </div>
         </form>
       </div>
 
