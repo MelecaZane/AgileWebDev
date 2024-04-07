@@ -13,3 +13,20 @@ body {
 .text-break {
     color: aliceblue;
 }
+
+#footer {
+    position: fixed;
+    bottom:0px;
+}
+
+.text-wrap {
+    color: aliceblue;
+}
+
+#footer {
+    background-color: rgba(15, 15, 16, 0.458);;
+}
+
+.footer-title {
+    font-weight: bold;
+}
