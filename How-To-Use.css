@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif; /* Sets the default font */
+    line-height: 1.6; /* Sets line height for readability */
+    max-width: 800px; /* Limits the body width */
+    margin: 0 auto; /* Centers the body on the page */
+    padding: 20px; /* Adds padding around the content */
+}
+
+h1 {
+    font-size: 50px; /* Larger font size for the main heading */
+    text-align: center; /* Centers the main heading */
+    margin-bottom: 20px; /* Adds space below the heading */
+}
+
+h2 {
+    margin-top: 20px; /* Adds space above each h2 heading */
+    font-size: 24px; /* Sets font size for h2 headings */
+    font-weight: bold; /* Makes h2 headings bold */
+}
+
+p {
+    margin-bottom: 10px; /* Adds space below each paragraph */
+}
+
+/* Styles for images */
+img {
+    max-width: 100%; /* Ensures images fit within their container */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Displays images as block elements */
+    margin: 20px auto; /* Centers images and adds space around them */
+}
+
+/* Positioning Contact Us and FAQs sections at the top */
+#contact-us, #faqs {
+    position: absolute; /* Positions the sections absolutely */
+    top: 20px; /* Distance from the top of the page */
+    display: inline-block; /* Ensures the sections are inline */
+}
+
+/* Adjusting position of FAQs section */
+#faqs {
+    left: 150px; /* Adjusts the left position to provide space from Contact Us */
+}
+
+/* Styles for Contact Us and FAQs h6 headings */
+#contact-us h6, #faqs h6 {
+    font-size: 20px; /* Sets font size for h6 headings */
+    font-weight: bold; /* Makes h6 headings bold */
+    text-decoration: underline; /* Underlines the text */
+}
