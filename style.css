@@ -1,5 +1,7 @@
 body {
     background-color: rgb(32, 33, 35);
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar-brand {
@@ -29,4 +31,21 @@ body {
 
 .footer-title {
     font-weight: bold;
+}
+
+.Posts{
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: rgb(212, 212, 212);
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin-right: 40px;
+}
+
+.txtarea{
+    width: 300px;
+    height: 80px;
+    margin-bottom: 5px;
+    resize: none;
 }
