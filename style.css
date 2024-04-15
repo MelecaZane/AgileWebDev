@@ -96,3 +96,20 @@ img {
     font-weight: bold; /* Makes h6 headings bold */
     text-decoration: underline; /* Underlines the text */
 }
+
+.gradient-custom-2 {
+/* fallback for old browsers */
+/* this does not seem to actually be a fallback, it sets background even on my main Chrome instance */
+background: rgb(32, 33, 35);
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+font-size: 1rem;
+line-height: 2.15;
+padding-left: .75em;
+padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+top: 13px;
+}
