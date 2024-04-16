@@ -44,14 +44,27 @@ body {
     background-color: rgb(212, 212, 212);
     padding-left: 10px;
     padding-bottom: 10px;
-    margin-right: 40px;
 }
 
 .txtarea{
-    width: 300px;
+    width: 50%;
     height: 80px;
     margin-bottom: 5px;
     resize: none;
+}
+
+@media (max-width: 768px) {
+    .txtarea {
+        width: 90%; /* Slightly wider on smaller screens */
+    }
+}
+
+
+@media (max-width: 480px) {
+    .txtarea {
+        width: 90%; /* Full width on smaller screens */
+        height: 60px;
+    }
 }
 
 h1 {
