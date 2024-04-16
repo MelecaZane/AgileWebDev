@@ -16,25 +16,25 @@
     </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="./index.html">LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="./index.html">LOGO</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="./newPost.html">New Post</a>
+                <a class="nav-link" href="./newPost.html">New Post</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./howTo.html">How-to</a>
+                <a class="nav-link" href="./howTo.html">How-to</a>
             </li>
-          </ul>
-        </div>
-    </nav>    
+        </ul>
+    </div>
+</nav>
 
     <!-- Steps section -->
-    <div id="steps">
+    <div  class="container-fluid" id="steps">
         <!-- Step 1 -->
         <h2>Step 1</h2>
         <p>Sign up and create an account or sign in to your LFG account.</p>
@@ -54,22 +54,34 @@
         <p>Have fun!</p>
     </div>
 
-    <div id="footer" style="width: 100%">
-        <div class="row" id="footerRowOne">
-            <div class="col-sm-12 navbar navbar-fixed-bottom"></div>
-            <div class="col-sm-4 text-center text-wrap footer-title">PAGES</div>
-            <div class="col-sm-4 text-center text-wrap footer-title">SOCIALS</div>
-            <div class="col-sm-4 text-center text-wrap footer-title">OTHER</div>
-        </div>
-
-        <div class="row" id="footerRowTwo">
-            <div class="col-sm-12 navbar navbar-fixed-bottom">
-                <div class="col-sm-4 text-center text-wrap footer-text">Home<br>About<br>Create Post</div>
-                <div class="col-sm-4 text-center text-wrap footer-text">Facebook<br>Twitter<br>Instagram<br>Reddit</div>
-                <div class="col-sm-4 text-center text-wrap footer-text">xyz</div>
-            </div>
-        </div>
-    </div>
-
+    <footer class="bg-dark" id="footer">
+      <div class="container-fluid">
+          <div class="row text-center">
+              <div class="col-sm-4 footer-title text-wrap">
+                  <strong>PAGES</strong>
+                  <div class="footer-text">
+                      <a href="#">Home</a><br>
+                      <a href="#">About</a><br>
+                      <a href="#">Create Post</a>
+                  </div>
+              </div>
+              <div class="col-sm-4 footer-title text-wrap">
+                  <strong>SOCIALS</strong>
+                  <div class="footer-text">
+                      <a href="#">Facebook</a><br>
+                      <a href="#">Twitter</a><br>
+                      <a href="#">Instagram</a><br>
+                      <a href="#">Reddit</a>
+                  </div>
+              </div>
+              <div class="col-sm-4 footer-title text-wrap">
+                  <strong>OTHER</strong>
+                  <div class="footer-text">
+                      <a href="#">XYZ</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
 </body>
 </html>

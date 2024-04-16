@@ -1,49 +1,173 @@
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: rgb(32, 33, 35);
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.6; /* Sets line height for readability */
-    margin: 0 auto; /* Centers the body on the page */
-    padding: 20px; /* Adds padding around the content */
+    margin: 0; /* Centers the body on the page */
+    padding: 0px; /* Adds padding around the content */
+    overflow-x: hidden; /* Hides horizontal scrollbar */
+    height: 100%;
     
+}
+
+#mainPosts{
+    padding-top: 10px;
 }
 
 .navbar-brand {
     padding-left: 12px;
 }
 
+nav{
+    background-color: rgb(32, 33, 35);
+    text-align: center;
+}
+
+#newPostHead{
+    padding-top: 10px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
 #newPostBox {
-    background-color: rgb(33,37,41);
+    flex: 1 0 auto; /* allows the new post box to expand and fill available space */
+    padding: 20px;
+    margin-top: 70px; /* increased to account for navbar height */
+    margin-bottom: 30px; /* ensures space between content and footer */
+    width: 80%;
+    max-width: 1200px; /* optional: limits width on larger screens */
+    background-color:rgb(126, 139, 148);
+    border-radius: 5px;
+    color: #fff;
+}
+
+#newPostbtn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 210px; /* Provide some top margin for spacing */
+}
+
+.form-control, .form-select {
+    background-color: #ffffff; /* Darker background for form elements */;
+    color: black;
+    border-color: rgba(64,79,86,255);
+}
+
+.tags-input-container {
+    border-radius: 4px;
+    flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: #fff;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px;
+    background: #007bff;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    color: white;
+    word-break: break-all; /* Allow the word to break and wrap to the next line */
+    max-width: 100%; /* Prevents the tag from extending beyond the container width */
+}
+
+.tag .remove-tag {
+    display: inline-block;
+    background: #035dbd;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+#tags-input {
+    flex: 1 0 auto;
+    min-width: 100px;
+    border: none;
+    background: transparent;
+    color: black;
+    margin-bottom: 5px;
+}
+
+#tags-input::placeholder {
+    color: #aaa;
+}
+
+#tags-input:focus {
+    outline: none;
 }
 
 .text-break, #steps, h1, #contact-us, #faqs {
     color: aliceblue;
 }
 
-#footer {
-    position: fixed;
-    bottom:0px;
-}
-
 .text-wrap {
     color: aliceblue;
 }
 
+#steps {
+    flex: 1 0 auto;
+    padding: 40px 20px;
+    margin-top: 100px; /* Adjusted for navbar height */
+    margin-bottom: 30px;
+    width: 80%;
+    max-width: 1200px;
+    background-color: rgb(126, 139, 148);
+    border-radius: 5px;
+    color: #fff;
+    text-align: center; /* Centers text inside the #steps div */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers child elements like headings and paragraphs */
+}
+
 #footer {
-    background-color: rgba(15, 15, 16, 0.458);
+    flex-shrink: 0; /* prevents the footer from shrinking */
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
 }
 
 .footer-title {
-    font-weight: bold;
+    font-weight: bold; /* Bold the title */
+    margin-bottom: 5px; /* Space between title and links */
+}
+
+.footer-text a {
+    color: white; /* Ensuring link colors are also white */
+    text-decoration: none; /* No underlines on links */
+    font-size: 14px; /* Smaller font size for links */
+}
+
+.footer-text a:hover {
+    text-decoration: underline; /* Underline on hover for better interaction */
 }
 
 .Posts{
     border: 2px solid #333;
     border-radius: 5px;
     margin-top: 20px;
-    background-color: rgb(212, 212, 212);
+    background-color: rgb(126, 139, 148);
     padding-left: 10px;
     padding-bottom: 10px;
+    color: #fff;
 }
 
 .txtarea{
@@ -56,14 +180,21 @@ body {
 @media (max-width: 768px) {
     .txtarea {
         width: 90%; /* Slightly wider on smaller screens */
-    }
-}
-
-
-@media (max-width: 480px) {
-    .txtarea {
-        width: 90%; /* Full width on smaller screens */
         height: 60px;
+    }
+    #newPostBox {
+        padding: 10px;
+    }
+    .navbar-toggler {
+        margin-right: 15px;
+    }
+    #newPostBox {
+        width: 95%; /* increases width on smaller screens */
+        margin-top: 65px; /* adjust top margin to align properly under navbar */
+    }
+    #newPostbtn{
+        width: 100%; /* Full width button on smaller screens */
+        margin-top: 15px;
     }
 }
 
