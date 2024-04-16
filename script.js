@@ -5,7 +5,7 @@ $(function(){
     }
   });
 
-  $(document).ready(function() {
+ $(document).ready(function() {
     $('#tags-input').on('keydown', function(e) {
         // Check if the key pressed is 'Enter'
         if (e.key === 'Enter' || e.keyCode === 13) {
@@ -14,13 +14,25 @@ $(function(){
 
             var tagValue = $(this).val().trim();
             if (tagValue) {
-                // Append the tag to the container
-                $('<span class="tag">' + tagValue + '<span class="remove-tag">&times;</span></span>')
-                    .insertBefore(this)
-                    .find('.remove-tag')
-                    .click(function() {
-                        $(this).parent().remove();
-                    });
+                // Check if tag already exists
+                var isDuplicate = false;
+                $('.tag').each(function() {
+                    if ($(this).text().slice(0, -1) === tagValue) { // Compare ignoring the remove button
+                        // If duplicate, remove the existing tag
+                        $(this).remove();
+                        isDuplicate = true;
+                    }
+                });
+
+                // Only add new tag if no duplicate was found
+                if (!isDuplicate) {
+                    $('<span class="tag">' + tagValue + '<span class="remove-tag">&times;</span></span>')
+                        .insertBefore(this)
+                        .find('.remove-tag')
+                        .click(function() {
+                            $(this).parent().remove();
+                        });
+                }
                 // Clear the input
                 $(this).val('');
             }
@@ -29,19 +41,31 @@ $(function(){
         // Create a tag when the input loses focus and there's a value
         var tagValue = $(this).val().trim();
         if (tagValue) {
-            // Append the tag to the container
-            $('<span class="tag">' + tagValue + '<span class="remove-tag">&times;</span></span>')
-                .insertBefore(this)
-                .find('.remove-tag')
-                .click(function() {
-                    $(this).parent().remove();
-                });
+            // Check if tag already exists
+            var isDuplicate = false;
+            $('.tag').each(function() {
+                if ($(this).text().slice(0, -1) === tagValue) { // Compare ignoring the remove button
+                    // If duplicate, remove the existing tag
+                    $(this).remove();
+                    isDuplicate = true;
+                }
+            });
+
+            // Only add new tag if no duplicate was found
+            if (!isDuplicate) {
+                $('<span class="tag">' + tagValue + '<span class="remove-tag">&times;</span></span>')
+                    .insertBefore(this)
+                    .find('.remove-tag')
+                    .click(function() {
+                        $(this).parent().remove();
+                    });
+            }
             // Clear the input
             $(this).val('');
         }
     });
 
-    // Optional: Stop form submission when Enter is pressed anywhere in the form
+    //Stop form submission when Enter is pressed anywhere in the form
     $('#newPostForm').on('keydown', function(e) {
         if (e.key === 'Enter' || e.keyCode === 13) {
             e.preventDefault();
