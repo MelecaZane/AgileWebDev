@@ -1,15 +1,6 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/script.js"></script>
-    <script src="https://kit.fontawesome.com/96ce613701.js" crossorigin="anonymous"></script>
-</head>
+<!-- Inserts head and allows <> tag delimiters to be inserted -->
+{{ head|safe }}
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/templates/index.html">LOGO</a>
@@ -38,62 +29,28 @@
 
     <div class="container mt-5" id="mainPosts">
         <ol>
+
+            {% for post in posts %}
             <li class="Posts">
-                <h3>Player name and Maybe a photo </h3>
-                <p>Post date and time. Slightly smaller and grey text.</p>
-                <p>Tags Go here. Maybe game Logo.</p>
+                <h3>{{ post.user.username }}</h3>
+                <p>{{ post.post_time }}</p>
+                <p>
+                    {% for tag in post.tags %}
+                    {{ tag }}
+                    {% endfor %}
+                </p>
                 <i class='fab fa-playstation' style='font-size:24px;'></i>
                 <div>
-                    <h4>Post Title: Looking for players for raid</h4>
-                    <p>Description: Hey we are currently looking for players to come join our raid. This weekend.</p>
-                    <p>Looking for players: 4</p>
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.description }}</p>
+                    <p>Looking for players: {{ post.player_amount }} </p>
                     <textarea id="replyTxtArea" class="form-control" rows="3" placeholder="Reply to this post"></textarea><br>
                     <button type="reply" class="btn btn-primary" id="standardBtn">Reply</button><br><br>
                     <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
                 </div>
             </li>
-                <li class="Posts">
-                    <h3>Player name and Maybe a photo </h3>
-                    <p>Post date and time. Slightly smaller and grey text.</p>
-                    <p>Tags Go here. Maybe game Logo.</p>
-                    <i class="fa-brands fa-xbox" style="font-size: 24px;"></i>
-                    <div>
-                        <h4>
-                            Post Title: Looking for players for raid
-                        </h4>
-                        <p>
-                            Description: Hey we are currently looking for players to come join our raid.This weekend.
-                        </p>
-                        <p>
-                            Looking for players:4
-                        </p>
-                        <textarea id="replyTxtArea" class="form-control" rows="3" placeholder="Reply to this post"></textarea><br>
-                        <button type="reply" class="btn btn-primary" id="standardBtn">Reply</button><br><br>
-                    <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
-                    </div>
-                </li>
-                <li class="Posts">
-                    <h3>Player name and Maybe a photo </h3>
-                    <p>Post date and time. Slightly smaller and grey text.</p>
-                    <p>Tags Go here. Maybe game Logo.</p>
-                    <div>
-                        <h4>
-                            Post Title: Looking for players for raid
-                        </h4>
-                        <p>
-                            Description: Hey we are currently looking for players to come join our raid.This weekend.
-                        </p>
-                        <p>
-                            Looking for players:4
-                        </p>
-                        <textarea id="replyTxtArea" class="form-control" rows="3" placeholder="Reply to this post"></textarea><br>
-                        <button type="reply" class="btn btn-primary" id="standardBtn">Reply</button><br><br>
-                    <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
-                    </div>
-                </li>
-            </ol>
-        </div>
-        
+            {% endfor %}
+        </ol>
         <footer class="bg-dark" id="footer">
             <div class="container-fluid">
                 <div class="row text-center">
