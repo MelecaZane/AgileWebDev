@@ -25,8 +25,13 @@ platform_list = ["PC", "Playstation", "Xbox", "Switch"]
 @flask_app.route("/index.html")
 @flask_app.route("/home")
 def home_page():
-    return render_template("index.html", posts=post_list, head=elements.head("Home"), navbar=elements.navbar())
+    return render_template("index.html", posts=post_list, head=elements.head("Home"), navbar=elements.navbar(), footer=elements.footer())
 
 @flask_app.route("/newPost")
 def new_post_page():
-    return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar())
+    return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
+
+@flask_app.route("/howto")
+@flask_app.route("/tutorial")
+def how_to_page():
+    return render_template("howTo.html", head=elements.head("How-To"), navbar=elements.navbar(), footer=elements.footer())

@@ -26,7 +26,7 @@ def navbar():
                     <a class="nav-link" href="/newPost">New Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/static/howTo.html">How-to</a>
+                    <a class="nav-link" href="/howto">How-to</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
@@ -39,4 +39,37 @@ def navbar():
             </ul>
         </div>
     </nav>
+'''
+
+def footer():
+    return '''
+<footer class="bg-dark" id="footer">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-sm-4 footer-title text-wrap">
+                        <strong>PAGES</strong>
+                        <div class="footer-text">
+                            <a href="#">Home</a><br>
+                            <a href="#">About</a><br>
+                            <a href="#">Create Post</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 footer-title text-wrap">
+                        <strong>SOCIALS</strong>
+                        <div class="footer-text">
+                            <a href="#">Facebook</a><br>
+                            <a href="#">Twitter</a><br>
+                            <a href="#">Instagram</a><br>
+                            <a href="#">Reddit</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 footer-title text-wrap">
+                        <strong>OTHER</strong>
+                        <div class="footer-text">
+                            <a href="#">XYZ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 '''
