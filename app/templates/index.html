@@ -1,0 +1,34 @@
+<html lang="en">
+<!-- Inserts head and allows <> tag delimiters to be inserted -->
+{{ head|safe }}
+<body>
+    {{ navbar|safe}}
+
+    <div class="container mt-5" id="mainPosts">
+        <ol>
+
+            {% for post in posts %}
+            <li class="Posts">
+                <h3>{{ post.user.username }}</h3>
+                <p>{{ post.post_time }}</p>
+                <p>
+                    {% for tag in post.tags %}
+                    {{ tag }}
+                    {% endfor %}
+                </p>
+                <i class='fab fa-playstation' style='font-size:24px;'></i>
+                <div>
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.description }}</p>
+                    <p>Looking for players: {{ post.player_amount }} </p>
+                    <textarea id="replyTxtArea" class="form-control" rows="3" placeholder="Reply to this post"></textarea><br>
+                    <button type="reply" class="btn btn-primary" id="standardBtn">Reply</button><br><br>
+                    <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+        
+        {{ footer|safe }}
+    </body>
+</html>
