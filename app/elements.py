@@ -12,3 +12,31 @@ def head(page_title):
     <script src="https://kit.fontawesome.com/96ce613701.js" crossorigin="anonymous"></script>
 </head>
 '''
+
+def navbar():
+    return '''
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">LOGO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/newPost">New Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/static/howTo.html">How-to</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/static/signIn.html">Sign-In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/static/signUp.html">Sign-Up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+'''

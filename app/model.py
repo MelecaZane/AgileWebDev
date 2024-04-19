@@ -19,3 +19,9 @@ class User:
         self.username = username
         self.password = password
         self.email = email
+
+class Game:
+    def __init__(self, game_id, title, max_players):
+        self.game_id = game_id
+        self.title = title
+        self.max_players = max_players
