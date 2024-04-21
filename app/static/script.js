@@ -87,12 +87,11 @@ function sendPost(){
 
     xhttp.open("POST", "/newPost", true);
     xhttp.setRequestHeader("Content-Type", "application/json");
-    console.log(JSON.stringify(postData))
     xhttp.send(JSON.stringify(postData));
 
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            console.log("success.")
+            redirect("/")
         }
     };
     
