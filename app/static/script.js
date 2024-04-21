@@ -119,3 +119,28 @@ function sendPost(){
         };
     }
 }
+
+function checkPlayers(){
+    var xhttp = new XMLHttpRequest();
+    var game = document.getElementById('game').options[document.getElementById('game').selectedIndex].text
+    console.log(game)
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            var players = parseInt(this.responseText)
+
+            var i, L = document.getElementById("players").options.length - 1;
+            for(i = L; i >= 0; i--) {
+                document.getElementById("players").remove(i);
+            }
+
+            for (let i = 1; i <= players; i++){
+                var option = document.createElement("option");
+                option.text = i;
+                option.value = i;
+                document.getElementById('players').add(option);
+            }
+        }
+    }
+    xhttp.open("GET", "/checkPlayers?game=" + game, true);
+    xhttp.send();
+}

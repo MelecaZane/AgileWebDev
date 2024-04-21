@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 from app import flask_app
 from app import elements
 
@@ -30,6 +30,16 @@ def home_page():
 @flask_app.route("/newPost")
 def new_post_page():
     return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
+
+# This may have to change once a true db is implemented
+@flask_app.route("/checkPlayers")
+def check_players():
+    game = request.args.get("game").lower()
+    if game == "none":
+        return "0"
+    for i in game_list:
+        if i.title.lower() == game:
+            return str(i.max_players)
 
 @flask_app.route("/howto")
 @flask_app.route("/tutorial")

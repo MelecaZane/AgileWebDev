@@ -19,7 +19,7 @@
                 <div class="mb-3 row">
                     <label for="game" class="col-md-2 col-form-label">Game:</label>
                     <div class="col-md-4">
-                        <select id="game" class="form-select">
+                        <select id="game" class="form-select"  onchange="checkPlayers()">
                             <option value="None" selected>None</option>
                             {% for game in games %}
                             <option value="{{ game.game_id }}">{{ game.title }}</option>
@@ -38,7 +38,7 @@
                     <div class="col-md-10">
                         <div id="tags-input-container" class="tags-input-container">
                             <!-- Tags will be added here by JavaScript -->
-                            <input type="text" id="tags-input" class="form-control" placeholder="For example: &quot;FPS&quot; or &quot;RPG&quot;"></input>
+                            <input type="text" id="tags-input" class="form-control" placeholder="For example: &quot;FPS&quot; or &quot;RPG&quot;">
                         </div>
                     </div>
                 </div>
