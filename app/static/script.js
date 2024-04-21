@@ -74,25 +74,48 @@ $(function(){
     });
 });
 
-function sendPost(){
-    var xhttp = new XMLHttpRequest();
-    postData = {
-        "title": document.getElementById('title').value,
-        "game": document.getElementById('game').value,
-        "players": document.getElementById('players').value,
-        "tags": $('.tag').map(function() { return $(this).text().slice(0, -1); }).get(),
-        "platform": document.getElementById('platform').value,
-        "description": document.getElementById('description').value
+function testWhitespace(str){
+    return str.trim().length === 0;
+}
+
+function validateNewPost(){
+    var title = document.getElementById('title').value;
+    var game = document.getElementById('game').value;
+    var players = document.getElementById('players').value;
+    var tags = $('.tag').map(function() { return $(this).text().slice(0, -1); }).get();
+    var platform = document.getElementById('platform').value;
+    var description = document.getElementById('description').value;
+
+    // if required fields are blank
+    if(testWhitespace(title) || testWhitespace(game) || testWhitespace(players) || testWhitespace(platform) || testWhitespace(description)){
+        alert("Please fill all required fields");
+        return false;
     }
 
-    xhttp.open("POST", "/newPost", true);
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify(postData));
+    return true;
 
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            // return redirect in flask
+}
+
+function sendPost(){
+    if (validateNewPost()){
+        var xhttp = new XMLHttpRequest();
+        postData = {
+            "title": document.getElementById('title').value,
+            "game": document.getElementById('game').value,
+            "players": document.getElementById('players').value,
+            "tags": $('.tag').map(function() { return $(this).text().slice(0, -1); }).get(),
+            "platform": document.getElementById('platform').value,
+            "description": document.getElementById('description').value
         }
-    };
     
+        xhttp.open("POST", "/newPost", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(postData));
+    
+        xhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                // return redirect in flask
+            }
+        };
+    }
 }
