@@ -73,3 +73,27 @@ $(function(){
         }
     });
 });
+
+function sendPost(){
+    var xhttp = new XMLHttpRequest();
+    postData = {
+        "title": document.getElementById('title').value,
+        "game": document.getElementById('game').value,
+        "players": document.getElementById('players').value,
+        "tags": $('.tag').map(function() { return $(this).text().slice(0, -1); }).get(),
+        "platform": document.getElementById('platform').value,
+        "description": document.getElementById('description').value
+    }
+
+    xhttp.open("POST", "/newPost", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    console.log(JSON.stringify(postData))
+    xhttp.send(JSON.stringify(postData));
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            console.log("success.")
+        }
+    };
+    
+}
