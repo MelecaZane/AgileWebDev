@@ -126,7 +126,7 @@ function checkPlayers(){
     console.log(game)
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            var players = parseInt(this.responseText)
+            var players = parseInt(this.responseText) - 1 // -1 to exclude the current player
 
             var i, L = document.getElementById("players").options.length - 1;
             for(i = L; i >= 0; i--) {
