@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for
 from app import flask_app
 from app import elements
 
+
 # Fake data for testing
 from app.model import User, Post, Game
 cheezelz = User(23663079, "Cheezelz", "plaintext", "a@a.com")
@@ -21,6 +22,7 @@ game_list = [destiny, jackbox]
 
 platform_list = ["PC", "Playstation", "Xbox", "Switch"]
 
+from app import functions
 
 @flask_app.route("/")
 @flask_app.route("/index.html")
@@ -33,7 +35,7 @@ def new_post_page():
     if request.method == 'GET':
         return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
     if request.method == 'POST':
-        print(request.json)
+        functions.add_post(request.json)
         return redirect(url_for("home_page"))
     
 # This may have to change once a true db is implemented
