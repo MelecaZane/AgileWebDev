@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 from app import flask_app
 from app import elements
 
@@ -21,16 +21,21 @@ game_list = [destiny, jackbox]
 
 platform_list = ["PC", "Playstation", "Xbox", "Switch"]
 
+
 @flask_app.route("/")
 @flask_app.route("/index.html")
 @flask_app.route("/home")
 def home_page():
     return render_template("index.html", posts=post_list, head=elements.head("Home"), navbar=elements.navbar(), footer=elements.footer())
 
-@flask_app.route("/newPost")
+@flask_app.route("/newPost", methods=["GET", "POST"])
 def new_post_page():
-    return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
-
+    if request.method == 'GET':
+        return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
+    if request.method == 'POST':
+        print(request.json)
+        return redirect(url_for("home_page"))
+    
 # This may have to change once a true db is implemented
 @flask_app.route("/checkPlayers")
 def check_players():
