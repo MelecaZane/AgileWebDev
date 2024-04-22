@@ -118,6 +118,9 @@ function sendPost(){
                 console.log(location.origin)
                 window.location.replace(location.origin)
             }
+            if(this.readyState == 4 && this.status == 400){
+                alert("Please enter a valid post.");
+            }
         };
     }
 }

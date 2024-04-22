@@ -35,8 +35,10 @@ def new_post_page():
     if request.method == 'GET':
         return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
     if request.method == 'POST':
-        functions.add_post(request.json)
-        return redirect(url_for("home_page"))
+        if functions.validate_post(request.json):
+            functions.add_post(request.json)
+            return redirect(url_for("home_page"))
+        return "Invalid post", 400 #BAD REQUEST
     
 # This may have to change once a true db is implemented
 @flask_app.route("/checkPlayers")
