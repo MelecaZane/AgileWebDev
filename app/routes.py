@@ -35,3 +35,7 @@ def new_post_page():
 @flask_app.route("/tutorial")
 def how_to_page():
     return render_template("howTo.html", head=elements.head("How-To"), navbar=elements.navbar(), footer=elements.footer())
+
+@flask_app.route("/signIn")
+def sign_in_page():
+    return render_template("signIn.html", head=elements.head("Sign-In"), navbar=elements.navbar(), footer=elements.footer())
