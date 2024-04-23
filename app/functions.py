@@ -16,7 +16,7 @@ def add_post(post_dict):
     platform = post_dict["platform"]
     description = post_dict["description"]
 
-    post_id = post_list[-1].post_id + 1
+    post_id = 99 #THIS IS A STUB, NEED TO CHECK FOR NEXT ID USING DATABASE
     user = cheezelz
 
     post_list.append(Post(post_id, user, title, game, player_amount, tags, platform, description))
