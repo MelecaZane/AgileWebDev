@@ -218,14 +218,14 @@ function emailVal(email){
 function passwordVal(password) {
 	
 	const minLength = 8;
-	const maxLength = 32;
+	// const maxLength = 32;
 	const letterNumberRegexSpecialChar = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
 
 	if(password == ""){
 		return "Please fill the field."
 	}
 
-	if (password.length < minLength || password.length > maxLength) {
+	if (password.length < minLength) {   // || password.length > maxLength
 		return "Password length should be minimum 8 & maximum 32 characters.";
 	}
 
