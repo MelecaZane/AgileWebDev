@@ -372,7 +372,8 @@ function validateNewPost(){
 
     // if required fields are blank
     if(isEmptyOrWhitespace(title) || isEmptyOrWhitespace(game) || isEmptyOrWhitespace(players) || isEmptyOrWhitespace(platform) || isEmptyOrWhitespace(description)){
-        alert("Please fill all required fields");
+        console.log("start " + game + " end")
+		alert("Please fill all required fields");
         return false;
     }
 

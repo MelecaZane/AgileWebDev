@@ -4,6 +4,7 @@ from app import elements
 from app.models import Post, Game, Platform, User
 from app import template_filters
 from app import functions
+from app import db
 
 @flask_app.route("/")
 @flask_app.route("/index.html")

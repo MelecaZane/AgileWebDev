@@ -22,7 +22,7 @@
                         <select id="game" class="form-select" onchange="checkPlayers()">
                             <option value="None" selected>None</option>
                             {% for game in games %}
-                            <option value="{{ game.game_id }}">{{ game }}</option>
+                            <option value="{{ game }}">{{ game }}</option>
                             {% endfor %}
                         </select>
                     </div>
