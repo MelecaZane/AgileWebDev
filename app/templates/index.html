@@ -9,18 +9,18 @@
 
             {% for post in posts %}
             <li class="Posts">
-                <h3>{{ post.user.username }}</h3>
-                <p>{{ post.post_time }}</p>
+                <h3>{{ post[2] }}</h3>
+                <p>{{ post[7]|datetime}}</p>
                 <p>
-                    {% for tag in post.tags %}
+                    {% for tag in post[5]|tag_list %}
                     {{ tag }}
                     {% endfor %}
                 </p>
                 <i class='fab fa-playstation' style='font-size:24px;'></i>
                 <div>
-                    <h4>{{ post.title }}</h4>
-                    <p>{{ post.description }}</p>
-                    <p>Looking for players: {{ post.player_amount }} </p>
+                    <h4>{{ post[9] }}</h4>
+                    <p>{{ post[6] }}</p>
+                    <p>Looking for players: {{ post[4] }} </p>
                     <textarea id="replyTxtArea" class="form-control" rows="3" placeholder="Reply to this post"></textarea><br>
                     <button type="reply" class="btn btn-primary" id="standardBtn">Reply</button><br><br>
                     <button type="join" class="btn btn-primary" id="standardBtn">Join</button>

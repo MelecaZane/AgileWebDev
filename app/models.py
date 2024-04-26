@@ -25,10 +25,16 @@ class Post(db.Model):
     tags = db.Column(db.Text) # comma separated string of tags
     description = db.Column(db.Text)
     post_date = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    post_platform_id = db.Column(db.Integer, db.ForeignKey('platform.platform_id'), nullable=False)
 
     user = db.relationship('User', back_populates='posts')
     game = db.relationship('Game', back_populates='posts')
     platform = db.relationship('Platform', back_populates='posts')
+
+    def all_posts():
+        posts = Post.query.join(User, Post.post_user_id == User.user_id).join(Game, Post.post_game_id == Game.game_id).join(Platform, Post.post_platform_id == Platform.platform_id).add_columns(\
+            Post.post_id, User.username, Game.game_title, Post.player_amount, Post.tags, Post.description, Post.post_date, Post.post_platform_id, Post.post_title).all()
+        return posts
 
 class Platform(db.Model):
     platform_id = db.Column(db.Integer, primary_key=True, nullable=False)
