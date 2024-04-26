@@ -19,7 +19,7 @@
                 <div class="mb-3 row">
                     <label for="game" class="col-md-2 col-form-label">Game:</label>
                     <div class="col-md-4">
-                        <select id="game" class="form-select">
+                        <select id="game" class="form-select" onchange="checkPlayers()">
                             <option value="None" selected>None</option>
                             {% for game in games %}
                             <option value="{{ game.game_id }}">{{ game }}</option>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary" id="newPostbtn">Post</button>
+                        <button type="button" class="btn btn-primary" id="newPostbtn" onclick="sendPost()">Post</button>
                     </div>
                 </div>
             </form>
