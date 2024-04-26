@@ -22,7 +22,7 @@
                         <select id="game" class="form-select">
                             <option value="None" selected>None</option>
                             {% for game in games %}
-                            <option value="{{ game.game_id }}">{{ game.title }}</option>
+                            <option value="{{ game.game_id }}">{{ game }}</option>
                             {% endfor %}
                         </select>
                     </div>

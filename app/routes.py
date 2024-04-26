@@ -14,7 +14,7 @@ def home_page():
 
 @flask_app.route("/newPost")
 def new_post_page():
-    return render_template("newPost.html", games=game_list, platforms=platform_list, head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
+    return render_template("newPost.html", games=Game.game_list(), platforms=Platform.platform_list(), head=elements.head("New Post"), navbar=elements.navbar(), footer=elements.footer())
 
 @flask_app.route("/howto")
 @flask_app.route("/tutorial")

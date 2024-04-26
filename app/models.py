@@ -8,6 +8,14 @@ class Game(db.Model):
 
     posts = db.relationship('Post', back_populates='game')
 
+    def game_list():
+        game_list = []
+        games = Game.query.all()
+        for game in games:
+            game_list.append(str(game.game_title))
+            print(game_list)
+        return game_list
+
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True, nullable=False)
     username = db.Column(db.String(64), unique=True, nullable=False)
@@ -41,3 +49,10 @@ class Platform(db.Model):
     platform_name = db.Column(db.String(64), nullable=False)
 
     posts = db.relationship('Post', back_populates='platform')
+
+    def platform_list():
+        plat_list = []
+        platforms = Platform.query.all()
+        for platform in platforms:
+            plat_list.append(platform.platform_name)
+        return plat_list
