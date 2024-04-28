@@ -6,7 +6,6 @@ def add_post(post_dict):
     #unpack dictionary
     title = post_dict["title"]
     game = Game.query.filter(Game.game_title == post_dict["game"]).first().game_id
-    print(game)
     if game == None:
         return False
     player_amount = post_dict["players"]

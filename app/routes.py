@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from app import flask_app
 from app import elements
 from app.models import Post, Game, Platform, User
@@ -21,6 +21,7 @@ def new_post_page():
         if functions.validate_post(request.json):
             if functions.add_post(request.json):
                 return redirect(url_for("home_page"))
+        flash("Server failed to validate post.")
         return "Invalid post", 400 #BAD REQUEST
     
 @flask_app.route("/checkPlayers")
