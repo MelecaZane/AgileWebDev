@@ -11,7 +11,7 @@
             <p>{{ post[7]|datetime}}</p>
             <p>
                 {% for tag in post[5]|tag_list %}
-                {{ tag }}
+                #{{ tag }},
                 {% endfor %}
             </p>
             <i class='fab fa-playstation' style='font-size:24px;'></i>
