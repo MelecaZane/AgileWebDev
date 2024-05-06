@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import flask_app
 from app import elements
+from app.forms import LoginForm
 from app.models import Post, Game, Platform, User
 from app import template_filters
 from app import functions
@@ -36,6 +37,14 @@ def check_players():
 def how_to_page():
     return render_template("howTo.html", head=elements.head("How-To"), navbar=elements.navbar(), footer=elements.footer())
 
-@flask_app.route("/signIn")
+@flask_app.route("/signIn", methods=["GET", "POST"])
 def sign_in_page():
-    return render_template("signIn.html", head=elements.head("Sign-In"), navbar=elements.navbar(), footer=elements.footer())
+    login_form = LoginForm()
+    if request.method == "GET":
+        return render_template("signIn.html", 
+                               head=elements.head("Sign-In"), 
+                               navbar=elements.navbar(), 
+                               footer=elements.footer(),
+                               form = LoginForm())
+    if request.method == "POST":
+        return None

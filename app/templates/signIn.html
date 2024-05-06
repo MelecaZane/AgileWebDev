@@ -23,10 +23,13 @@
                       <button onclick="showRegister()"  id="register-btn">Registration</button>
                     </div>
                     <div id="login-form">
-                      <form action="#">
+                      <form action="/signIn" method="post">
                         <div class="center">
-                          <input id="login-email" class="input-text" type="text" placeholder="Email Address"> 
-                          <input id="login-pass" class="mt-10 input-text" type="password" placeholder="Password">
+                          {{ form.hidden_tag() }}
+
+                          {{ form.email(class="input-text", id="login-email", placeholder="Email Address") }}
+                          <br>
+                          {{ form.password(class="mt-10 input-text", id="login-pass", placeholder="Password") }}
                         </div>
                         
                         <div class="forgot-pass-remember-me mt-10">
@@ -40,7 +43,7 @@
                         </div>
               
                         <div class="center mt-20">
-                          <input onclick="return loginVal();"  class="Submit-Btn" type="submit" value="Login" id="LoginBtn">
+                          {{ form.submit(onclick="return loginVal();", class="Submit-Btn", id="LoginBtn") }}
                         </div>
                       </form>
                       <p class="center mt-20 dont-have-account">
