@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_required, login_user, logout_user
+from flask_login import current_user, login_required, login_user, logout_user
 from app import flask_app
 from app.forms import LoginForm
 from app.models import Post, Game, Platform, User
@@ -30,7 +30,7 @@ def new_post_page():
                                title="New Post")
     if request.method == 'POST':
         if functions.validate_post(request.json):
-            if functions.add_post(request.json):
+            if functions.add_post(request.json, current_user):
                 return redirect(url_for("home_page"))
         flash("Server failed to validate post.")
         return "Invalid post", 400 #BAD REQUEST
