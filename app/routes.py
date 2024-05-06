@@ -1,4 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
+from flask_login import login_user
 from app import flask_app
 from app import elements
 from app.forms import LoginForm
@@ -45,6 +46,27 @@ def sign_in_page():
                                head=elements.head("Sign-In"), 
                                navbar=elements.navbar(), 
                                footer=elements.footer(),
-                               form = LoginForm())
+                               form = login_form)
     if request.method == "POST":
-        return None
+        user_email = login_form.email.data
+        user = User.query.filter(User.email == user_email).first()
+        if not user:
+            flash("User not found.", 'error')
+            return render_template("signIn.html", 
+                               head=elements.head("Sign-In"), 
+                               navbar=elements.navbar(), 
+                               footer=elements.footer(),
+                               form = login_form)
+        
+        password = login_form.password.data
+        if not user.check_password(password):
+            flash("Incorrect password.", 'error')
+            return render_template("signIn.html", 
+                               head=elements.head("Sign-In"), 
+                               navbar=elements.navbar(), 
+                               footer=elements.footer(),
+                               form = login_form)
+        
+        # If all successful, login the user
+        login_user(user)
+        return redirect(url_for("home_page"))
