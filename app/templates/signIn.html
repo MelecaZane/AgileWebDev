@@ -1,12 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-  {{ head|safe }}
-
-<body>
-  {{ navbar|safe }}
-
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+    
   <section class="h-100 gradient-form">
     <div class="container py-5 h-100" id="sign1">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -111,9 +106,7 @@
     </div>
   </section>
 
-  {{ footer|safe }}
-
   <script src="./showHide.js" type="text/javascript"></script>
 	<script src="./isValid.js" type="text/javascript"></script>
-</body>
-</html>
+
+{% endblock %}

@@ -1,72 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
 
-    {{ head|safe }}
-
-    <body>
-    
-        {{ navbar|safe }}
-
-        <div class="container-fluid" id="newPostBox">
-            <h2 id="newPostHead">New Post</h1>
-            <form id="newPostForm">
-                <div class="mb-3 row">
-                    <label for="title" class="col-md-2 col-form-label">Title:</label>
-                    <div class="col-md-10">
-                        <textarea id="title" class="form-control" rows="1"></textarea>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="game" class="col-md-2 col-form-label">Game:</label>
-                    <div class="col-md-4">
-                        <select id="game" class="form-select" onchange="checkPlayers()">
-                            <option value="None" selected>None</option>
-                            {% for game in games %}
-                            <option value="{{ game }}">{{ game }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <label for="players" class="col-md-2 col-form-label">Players:</label>
-                    <div class="col-md-4">
-                        <select id="players" class="form-select">
-                            <!-- Players populated here based on game max (game.max_players) -->
-                        </select>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="tags" class="col-md-2 col-form-label">Tags:</label>
-                    <div class="col-md-10">
-                        <div id="tags-input-container" class="tags-input-container">
-                            <!-- Tags will be added here by JavaScript -->
-                            <input type="text" id="tags-input" class="form-control" placeholder="For example: &quot;FPS&quot; or &quot;RPG&quot;"></input>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="platform" class="col-md-2 col-form-label">Platform:</label>
-                        <div class="col-md-4">
-                            <select id="platform" class="form-select">
-                                {% for platform in platforms %}
-                                <option value="{{ platform }}">{{ platform }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                </div>
-                <div class="mb-3 row">
-                    <label for="description" class="col-md-2 col-form-label">Description:</label>
-                    <div class="col-md-10">
-                        <textarea id="description" class="form-control" rows="4" placeholder="Description of desired activity here"></textarea>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-end">
-                        <button type="button" class="btn btn-primary" id="newPostbtn" onclick="sendPost()">Post</button>
-                    </div>
-                </div>
-            </form>
+<div class="container-fluid" id="newPostBox">
+    <h2 id="newPostHead">New Post</h1>
+    <form id="newPostForm">
+        <div class="mb-3 row">
+            <label for="title" class="col-md-2 col-form-label">Title:</label>
+            <div class="col-md-10">
+                <textarea id="title" class="form-control" rows="1"></textarea>
+            </div>
         </div>
+        <div class="mb-3 row">
+            <label for="game" class="col-md-2 col-form-label">Game:</label>
+            <div class="col-md-4">
+                <select id="game" class="form-select" onchange="checkPlayers()">
+                    <option value="None" selected>None</option>
+                    {% for game in games %}
+                    <option value="{{ game }}">{{ game }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label for="players" class="col-md-2 col-form-label">Players:</label>
+            <div class="col-md-4">
+                <select id="players" class="form-select">
+                    <!-- Players populated here based on game max (game.max_players) -->
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="tags" class="col-md-2 col-form-label">Tags:</label>
+            <div class="col-md-10">
+                <div id="tags-input-container" class="tags-input-container">
+                    <!-- Tags will be added here by JavaScript -->
+                    <input type="text" id="tags-input" class="form-control" placeholder="For example: &quot;FPS&quot; or &quot;RPG&quot;"></input>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="platform" class="col-md-2 col-form-label">Platform:</label>
+                <div class="col-md-4">
+                    <select id="platform" class="form-select">
+                        {% for platform in platforms %}
+                        <option value="{{ platform }}">{{ platform }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="description" class="col-md-2 col-form-label">Description:</label>
+            <div class="col-md-10">
+                <textarea id="description" class="form-control" rows="4" placeholder="Description of desired activity here"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary" id="newPostbtn" onclick="sendPost()">Post</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-        {{ footer|safe }}
-
-    </body>
-</html>
+{% endblock %}

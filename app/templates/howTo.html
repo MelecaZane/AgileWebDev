@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-    {{ head|safe }}
-<body>
-    
-    {{ navbar|safe }}
-
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
     <!-- Steps section -->
     <div  class="container-fluid" id="steps">
         <!-- Step 1 -->
@@ -25,8 +21,4 @@
         <h2>Step 4</h2>
         <p>Have fun!</p>
     </div>
-
-    {{ footer|safe }}
-    
-</body>
-</html>
+{% endblock %}
