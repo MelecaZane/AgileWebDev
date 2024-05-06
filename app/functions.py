@@ -12,7 +12,6 @@ def add_post(post_dict, current_user):
     tags = ",".join(post_dict["tags"])
     platform = Platform.query.filter(Platform.platform_name == post_dict["platform"]).first().platform_id
     description = post_dict["description"]
-
     user_id = current_user.user_id
 
     db.session.add(Post(post_user_id=user_id, post_title=title, post_game_id=game, player_amount=player_amount,\
