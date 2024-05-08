@@ -34,7 +34,7 @@ def navbar():
                     <a class="nav-link" href="/signIn">Sign-In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/signIn">Sign-Up</a>
+                    <a class="nav-link" href="JavaScript:void(0);" onclick="showRegister()">Sign-Up</a>
                 </li>
             </ul>
         </div>
@@ -49,7 +49,7 @@ def footer():
                     <div class="col-sm-4 footer-title text-wrap">
                         <strong>PAGES</strong>
                         <div class="footer-text">
-                            <a href="#">Home</a><br>
+                            <a href="/">Home</a><br>
                             <a href="#">About</a><br>
                             <a href="#">Create Post</a>
                         </div>
