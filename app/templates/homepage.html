@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your stylish head content goes here -->
+    {{ head|safe }}
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+        }
+        .container h2, .container p {
+            font-family: 'Arial', sans-serif;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .button-container a {
+            text-decoration: none;
+        }
+        .button {
+            padding: 15px 30px;
+            background-color: #ffffff;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your eye-catching navbar goes here -->
+    {{ navbar|safe }}
+
+    <div class="container">
+        <h2>Welcome to Looking For Group!</h2>
+        <p>The number one LFG platform in Australia</p>
+        <div class="button-container">
+            <a href="/signIn">
+                <button class="button">Get Started</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Your beautifully crafted footer goes here -->
+    {{ footer|safe }}
+</body>
+</html>
