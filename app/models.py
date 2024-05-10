@@ -72,3 +72,8 @@ class Platform(db.Model):
         for platform in platforms:
             plat_list.append(platform.platform_name)
         return plat_list
+    
+    # PLATFORM IDs:
+    # 1 - PC
+    # 2 - Xbox
+    # 3 - Playstation
