@@ -13,6 +13,10 @@ body {
     
 }
 
+.flashes {
+    color: #ff5b5b;
+}
+
 @media (max-width: 768px) {
     #replyTxtArea {
         width: 90%; /* Slightly wider on smaller screens */

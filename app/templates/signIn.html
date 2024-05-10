@@ -1,12 +1,7 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-  {{ head|safe }}
-
-<body>
-  {{ navbar|safe }}
-
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+    
   <section class="h-100 gradient-form">
     <div class="container py-5 h-100" id="sign1">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -23,10 +18,22 @@
                       <button onclick="showRegister()"  id="register-btn">Registration</button>
                     </div>
                     <div id="login-form">
-                      <form action="#">
+                      {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                          <ul class=flashes>
+                          {% for message in messages %}
+                            <li>{{ message }}</li>
+                          {% endfor %}
+                          </ul>
+                        {% endif %}
+                      {% endwith %}
+                      <form action="/signIn" method="post">
                         <div class="center">
-                          <input id="login-email" class="input-text" type="text" placeholder="Email Address"> 
-                          <input id="login-pass" class="mt-10 input-text" type="password" placeholder="Password">
+                          {{ form.hidden_tag() }}
+
+                          {{ form.email(class="input-text", id="login-email", placeholder="Email Address") }}
+                          <br>
+                          {{ form.password(class="mt-10 input-text", id="login-pass", placeholder="Password") }}
                         </div>
                         
                         <div class="forgot-pass-remember-me mt-10">
@@ -40,7 +47,7 @@
                         </div>
               
                         <div class="center mt-20">
-                          <input onclick="return loginVal();"  class="Submit-Btn" type="submit" value="Login" id="LoginBtn">
+                          {{ form.submit(onclick="return loginVal();", class="Submit-Btn", id="LoginBtn") }}
                         </div>
                       </form>
                       <p class="center mt-20 dont-have-account">
@@ -99,9 +106,7 @@
     </div>
   </section>
 
-  {{ footer|safe }}
-
   <script src="./showHide.js" type="text/javascript"></script>
 	<script src="./isValid.js" type="text/javascript"></script>
-</body>
-</html>
+
+{% endblock %}

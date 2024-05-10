@@ -2,7 +2,7 @@ from app.models import Post, Game, Platform, User
 from app import db
 # Functions that are not routes themselves
 
-def add_post(post_dict):
+def add_post(post_dict, current_user):
     #unpack dictionary
     title = post_dict["title"]
     game = Game.query.filter(Game.game_title == post_dict["game"]).first().game_id
@@ -12,10 +12,9 @@ def add_post(post_dict):
     tags = ",".join(post_dict["tags"])
     platform = Platform.query.filter(Platform.platform_name == post_dict["platform"]).first().platform_id
     description = post_dict["description"]
+    user_id = current_user.user_id
 
-    user = 1 #STUB, NEED USER ID FROM LOGGED IN USER
-
-    db.session.add(Post(post_user_id=user, post_title=title, post_game_id=game, player_amount=player_amount,\
+    db.session.add(Post(post_user_id=user_id, post_title=title, post_game_id=game, player_amount=player_amount,\
                         tags=tags, description=description, post_platform_id=platform))
     db.session.commit()
     return True
