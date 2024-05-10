@@ -45,6 +45,7 @@ class Post(db.Model):
     post_user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
     post_title = db.Column(db.String(128))
     post_game_id = db.Column(db.Integer, db.ForeignKey('game.game_id'), nullable=False)
+    found_players = db.Column(db.Integer, nullable=True, default=0)
     player_amount = db.Column(db.Integer, nullable=False)
     tags = db.Column(db.Text) # comma separated string of tags
     description = db.Column(db.Text)
@@ -57,7 +58,7 @@ class Post(db.Model):
 
     def all_posts():
         posts = Post.query.join(User, Post.post_user_id == User.user_id).join(Game, Post.post_game_id == Game.game_id).join(Platform, Post.post_platform_id == Platform.platform_id).add_columns(\
-            Post.post_id, User.username, Game.game_title, Post.player_amount, Post.tags, Post.description, Post.post_date, Post.post_platform_id, Post.post_title).all()
+            Post.post_id, User.username, Game.game_title, Post.player_amount, Post.tags, Post.description, Post.post_date, Post.post_platform_id, Post.post_title, Post.found_players).all()
         return posts
 
 class Platform(db.Model):

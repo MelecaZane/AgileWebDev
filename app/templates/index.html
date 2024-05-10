@@ -30,16 +30,19 @@
                     <div>
                         <h4>{{ post[9] }}</h4> <!-- Post Title -->
                         <p>{{ post[6] }}</p> <!-- Post Description -->
-                        <p>Players: /{{ post[4] }} </p> <!-- Player Amount -->
                         <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
                     </div>
                 </div>
                 <div class="col-md-6" id="right-post-column">
-                    <div id="player-boxes">
-                        {% for player in range(post[4]) -%}
+                    <div id="player-boxes"> <!-- Players in lobby -->
+                        {% for player in range(post[10]) -%}
+                            &#128998
+                        {% endfor %}
+                        {% for player in range(post[4] - post[10]) %}
                             &#11036
                         {% endfor %}
                     </div>
+                    <p>Players: {{ post[10] }}/{{ post[4] }} </p> <!-- Player Amount -->
                 </div>
             </div>
         </li>
