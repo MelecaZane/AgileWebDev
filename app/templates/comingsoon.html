@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html>
+<head>
     {{ head|safe }}
+
+    <script>
+        // Set the launch date
+        var launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 1000); // Adding 1000 days
+
+        // Update the countdown every second
+        var countdown = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = launchDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("countdown").innerHTML = "We're live now!";
+            }
+        }, 1000);
+    </script>
+</head>
 <body>
-    
+
     {{ navbar|safe }}
 
-    <h2>Coming Soon Thankyou for your pateince </h2>
-
-
-
-
+    <div style="text-align: center; padding: 50px; color: white;">
+        <h2 style="font-size: 36px; color: white; font-family: 'Arial', sans-serif;">We're Preparing Something Awesome!</h2>
+        <p style="font-size: 18px; color: white; font-family: 'Arial', sans-serif;">Thank you for your patience and stay tuned for updates.</p>
+        <img src="https://image.winudf.com/v2/image/bXBsLmNvbS5jb21pbmdzb29uX3NjcmVlbl8wXzE1MzQ3NTgxODFfMDQ0/screen-0.jpg?fakeurl=1&type=.jpg" alt="Descarga de APK de Coming Soon para Android" style="width: 400px; height: auto; margin-top: 20px;">
+        <p id="countdown" style="font-size: 24px; color: white; font-family: 'Arial', sans-serif;"></p>
+    </div>
 
 
     {{ footer|safe }}
-    
 </body>
 </html>
