@@ -4,39 +4,47 @@
     
 <div class="container mt-5" id="mainPosts">
     <ol>
-
         {% for post in posts %}
         <li class="Posts">
-            <h3>{{ post[2] }}</h3> <!-- Username -->
-            <p>{{ post[7]|datetime }}</p> <!-- Time -->
-            <p>{{ post[3] }}</p> <!-- Game -->
-            <p> <!-- Tags -->
-                {% if post[5] != "" %}
-                    {% for tag in post[5]|tag_list %}
-                    #{{ tag }},
-                    {% endfor %}
-                {% endif %}
-            </p>
-            {% if post[8] == 1 %} <!-- Platform Icon -->
-                <i class='fas fa-desktop' style='font-size:24px;'></i>
-            {% elif post[8] == 2 %}
-                <i class='fab fa-xbox' style='font-size:24px;'></i>
-            {% elif post[8] == 3 %}
-            <i class='fab fa-playstation' style='font-size:24px;'></i>
-            {% else %}
-                <i class='fab fa-question' style='font-size:24px;'></i>
-            {% endif %}
-            <div>
-                <h4>{{ post[9] }}</h4> <!-- Post Title -->
-                <p>{{ post[6] }}</p> <!-- Post Description -->
-                <p>Looking for players: {{ post[4] }} </p> <!-- Player Amount -->
-                <textarea id="replyTxtArea" class="form-control" rows="3" placeholder="Reply to this post"></textarea><br>
-                <button type="reply" class="btn btn-primary" id="standardBtn">Reply</button><br><br>
-                <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
+            <div class="row">
+                <div class="col-md-6" id="left-post-column">
+                    <h3>{{ post[2] }}</h3> <!-- Username -->
+                    <p>{{ post[7]|datetime }}</p> <!-- Time -->
+                    <p>{{ post[3] }}</p> <!-- Game -->
+                    <p> <!-- Tags -->
+                        {% if post[5] != "" %}
+                            {% for tag in post[5]|tag_list %}
+                            #{{ tag }},
+                            {% endfor %}
+                        {% endif %}
+                    </p>
+                    {% if post[8] == 1 %} <!-- Platform Icon -->
+                        <i class='fas fa-desktop' style='font-size:24px;'></i>
+                    {% elif post[8] == 2 %}
+                        <i class='fab fa-xbox' style='font-size:24px;'></i>
+                    {% elif post[8] == 3 %}
+                        <i class='fab fa-playstation' style='font-size:24px;'></i>
+                    {% else %}
+                        <i class='fab fa-question' style='font-size:24px;'></i>
+                    {% endif %}
+                    <div>
+                        <h4>{{ post[9] }}</h4> <!-- Post Title -->
+                        <p>{{ post[6] }}</p> <!-- Post Description -->
+                        <p>Players: /{{ post[4] }} </p> <!-- Player Amount -->
+                        <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
+                    </div>
+                </div>
+                <div class="col-md-6" id="right-post-column">
+                    <div id="player-boxes">
+                        {% for player in range(post[4]) -%}
+                            &#11036
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </li>
         {% endfor %}
     </ol>
-    
+</div>
 
 {% endblock %}
