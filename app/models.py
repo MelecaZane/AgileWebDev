@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
+    in_post = db.Column(db.Integer, nullable=True, default=None)
 
     posts = db.relationship('Post', back_populates='user')
 
@@ -59,7 +60,7 @@ class Post(db.Model):
 
     def all_posts():
         posts = Post.query.join(User, Post.post_user_id == User.user_id).join(Game, Post.post_game_id == Game.game_id).join(Platform, Post.post_platform_id == Platform.platform_id).add_columns(\
-            Post.post_id, User.username, Game.game_title, Post.player_amount, Post.tags, Post.description, Post.post_date, Post.post_platform_id, Post.post_title, Post.found_players).all()
+            Post.post_id, User.username, Game.game_title, Post.player_amount, Post.tags, Post.description, Post.post_date, Post.post_platform_id, Post.post_title, Post.found_players, Post.post_user_id).all()
         return posts
 
 class Platform(db.Model):

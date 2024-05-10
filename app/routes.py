@@ -26,6 +26,7 @@ def home_page():
                 post_to_update.found_player_list = str(current_user.user_id)
             else:
                 post_to_update.found_player_list += "," + str(current_user.user_id)
+            current_user.in_post = post_to_update.post_id
             db.session.commit()
         return render_template("index.html", 
                             posts=Post.all_posts(),

@@ -9,7 +9,7 @@
             <form method='POST'>
             <div class="row">
                 <div class="col-md-6" id="left-post-column">
-                    <h3>{{ post[2] }}</h3> <!-- Username -->
+                    <h3>{{ post[9] }}</h3> <!-- Post Title -->
                     <p>{{ post[7]|datetime }}</p> <!-- Time -->
                     <p>{{ post[3] }}</p> <!-- Game -->
                     <p> <!-- Tags -->
@@ -29,10 +29,19 @@
                         <i class='fab fa-question' style='font-size:24px;'></i>
                     {% endif %}
                     <div>
-                        <h4>{{ post[9] }}</h4> <!-- Post Title -->
-                        <p>{{ post[6] }}</p> <!-- Post Description -->
+                        <h4>{{ post[2] }}</h4> <!-- Username -->
                         {{ form.post_id(content=post[1], value=post[1]) }}
-                        {{ form.submit(class="btn btn-primary")}}
+                        {% if current_user.user_id == post[11] %}
+                            <button type="button" class="btn btn-primary" disabled>Your Post</button>
+                        {% elif post[4] == post[10] %}
+                            <button type="button" class="btn btn-primary" disabled>Lobby Full</button>
+                        {% elif current_user.in_post == post[1] %}
+                            <button type="button" class="btn btn-primary" disabled>Joined</button>
+                        {% elif current_user.in_post == None %}
+                            {{ form.submit(class="btn btn-primary")}}
+                        {% else %}
+                            <button type="button" class="btn btn-primary" disabled>Join</button>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-6" id="right-post-column">
@@ -45,6 +54,9 @@
                         {% endfor %}
                     </div>
                     <p>Players: {{ post[10] }}/{{ post[4] }} </p> <!-- Player Amount -->
+                    <br>
+                    <p><ins>Description:</ins></p>
+                    <p>{{ post[6] }}</p> <!-- Post Description -->
                 </div>
             </div>
         </form>
