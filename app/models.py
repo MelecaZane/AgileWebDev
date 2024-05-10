@@ -45,7 +45,8 @@ class Post(db.Model):
     post_user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'), nullable=False)
     post_title = db.Column(db.String(128))
     post_game_id = db.Column(db.Integer, db.ForeignKey('game.game_id'), nullable=False)
-    found_players = db.Column(db.Integer, nullable=True, default=0)
+    found_players = db.Column(db.Integer, nullable=False, default=0)
+    found_player_list = db.Column(db.String(32), nullable=True) # comma separated string of ids
     player_amount = db.Column(db.Integer, nullable=False)
     tags = db.Column(db.Text) # comma separated string of tags
     description = db.Column(db.Text)

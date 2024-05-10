@@ -1,20 +1,36 @@
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required, login_user, logout_user
 from app import flask_app
-from app.forms import LoginForm
+from app.forms import LoginForm, ExistingPostForm
 from app.models import Post, Game, Platform, User
 from app import template_filters
 from app import functions
 from app import db, login
 
-@flask_app.route("/")
-@flask_app.route("/index.html")
-@flask_app.route("/home")
+@flask_app.route("/", methods=["GET", "POST"])
+@flask_app.route("/index.html", methods=["GET", "POST"])
+@flask_app.route("/home", methods=["GET", "POST"])
 def home_page():
-    post_list = Post.all_posts()
-    return render_template("index.html", 
-                           posts=post_list,
-                           title = "Home")
+    join_form = ExistingPostForm()
+    if request.method == "GET":
+        return render_template("index.html", 
+                            posts=Post.all_posts(),
+                            title = "Home",
+                            form = join_form)
+    if request.method == "POST":
+        post_to_update = Post.query.get(join_form.post_id.data)
+        if post_to_update.found_players < post_to_update.player_amount and current_user.is_authenticated\
+            and (post_to_update.found_player_list is None or current_user.user_id not in post_to_update.found_player_list.split(",")):
+            post_to_update.found_players += 1
+            if post_to_update.found_player_list is None:
+                post_to_update.found_player_list = str(current_user.user_id)
+            else:
+                post_to_update.found_player_list += "," + str(current_user.user_id)
+            db.session.commit()
+        return render_template("index.html", 
+                            posts=Post.all_posts(),
+                            title = "Home",
+                            form = join_form)
 
 @login.unauthorized_handler
 def unauthorized():

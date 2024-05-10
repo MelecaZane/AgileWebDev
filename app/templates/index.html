@@ -5,7 +5,8 @@
 <div class="container mt-5" id="mainPosts">
     <ol>
         {% for post in posts %}
-        <li class="Posts">
+        <li class="Posts" id="{{ post[1] }}">
+            <form method='POST'>
             <div class="row">
                 <div class="col-md-6" id="left-post-column">
                     <h3>{{ post[2] }}</h3> <!-- Username -->
@@ -30,7 +31,8 @@
                     <div>
                         <h4>{{ post[9] }}</h4> <!-- Post Title -->
                         <p>{{ post[6] }}</p> <!-- Post Description -->
-                        <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
+                        {{ form.post_id(content=post[1], value=post[1]) }}
+                        {{ form.submit(class="btn btn-primary")}}
                     </div>
                 </div>
                 <div class="col-md-6" id="right-post-column">
@@ -45,6 +47,7 @@
                     <p>Players: {{ post[10] }}/{{ post[4] }} </p> <!-- Player Amount -->
                 </div>
             </div>
+        </form>
         </li>
         {% endfor %}
     </ol>
