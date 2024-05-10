@@ -39,3 +39,16 @@ def how_to_page():
 @flask_app.route("/signIn")
 def sign_in_page():
     return render_template("signIn.html", head=elements.head("Sign-In"), navbar=elements.navbar(), footer=elements.footer())
+
+
+
+@flask_app.route("/comingsoon")
+def coming_soon_page():
+    return render_template("comingsoon.html", head=elements.head("Coming-Soon"), navbar=elements.navbar(), footer=elements.footer())
+
+
+
+@flask_app.route("/homepage")
+def homepage_page():
+    return render_template("homepage.html", head=elements.head("Home-Page"), navbar=elements.navbar(), footer=elements.footer())
+

@@ -16,7 +16,7 @@ def head(page_title):
 def navbar():
     return '''
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="/">LOGO</a>
+        <a class="navbar-brand" href="/homepage">LOGO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,24 +49,24 @@ def footer():
                     <div class="col-sm-4 footer-title text-wrap">
                         <strong>PAGES</strong>
                         <div class="footer-text">
-                            <a href="/">Home</a><br>
-                            <a href="#">About</a><br>
-                            <a href="#">Create Post</a>
+                            <a href="/homepage">Home</a><br>
+                            <a href="/comingsoon">About</a><br>
+                            <a href="/newPost">Create Post</a>
                         </div>
                     </div>
                     <div class="col-sm-4 footer-title text-wrap">
                         <strong>SOCIALS</strong>
                         <div class="footer-text">
-                            <a href="#">Facebook</a><br>
-                            <a href="#">Twitter</a><br>
-                            <a href="#">Instagram</a><br>
-                            <a href="#">Reddit</a>
+                            <a href="/comingsoon">Facebook</a><br>
+                            <a href="/comingsoon">Twitter</a><br>
+                            <a href="/comingsoon">Instagram</a><br>
+                            <a href="/comingsoon">Reddit</a>
                         </div>
                     </div>
                     <div class="col-sm-4 footer-title text-wrap">
-                        <strong>OTHER</strong>
+                        <strong>Support Us</strong>
                         <div class="footer-text">
-                            <a href="#">XYZ</a>
+                            <a href="/comingsoon">Become a Patreon</a>
                         </div>
                     </div>
                 </div>
