@@ -16,20 +16,12 @@
             <div class="col-md-6">
                 <div class="card bg-dark">
                     <div class="card-body">
-                        <h1 class="card-title">Sign-Up</h1><br>
+                        <h1 class="card-title">Sign-Up</h1>
                         <p class="signUp">Please fill in this form to create an account.</p>
                         <form action="/signUp" method="post" id="Sign-Up">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="First name">
-                            </div>
                             <div class = "mb-3">
                                 <label for="usename" class="form-label">Username:</label>
                                 <input type="text" class="form-control" id="username" name="username">
-                            </div>
-                            <div class="mb-3">
-                                <label for="age" class="form-label">Age:</label>
-                                <input type="number" class="form-control" id="age" name="age" min="1" max="99" step="1">
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address:</label>
@@ -39,15 +31,11 @@
                                 <label for="password" class="form-label">Password:</label>
                                 <input type="password" class="form-control" id="password" name="password">
                             </div>
-                            <div class="mb-3">
-                                <label for="password2" class="form-label">Confirm Password:</label>
-                                <input type="password" class="form-control" id="password2" name="password2">
-                            </div>
                             <div class="mb-3 mt-4">
                                 <button type="submit" class="btn btn-primary w-100">Sign-Up</button>
                             </div>
                             <div class="mb-3 mt-4 text-center">
-                                <p>Already have an account? <a href="/signIn">Log In</a></p>
+                                <p>Don't have an account? <a href="/signIn">Sign-Up</a></p>
                             </div>
                         </form>
                     </div>

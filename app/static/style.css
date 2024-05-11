@@ -126,8 +126,23 @@ nav {
     color: #aaa;
 }
 
-.text-break, #steps, h1, #contact-us, #faqs, #Sign-Up {
+.text-break, #steps, h1, #contact-us, #faqs,  #Sign-Up, .signUp {
     color: aliceblue;
+}
+
+.card .btn-close {
+    filter: invert();
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+    font-size: 20px; /* Increases the size of the icon */
+}
+
+.card {
+    position: relative; /* This makes the child position:absolute work as intended */
 }
 
 h1 {
