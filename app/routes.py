@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required, login_user, logout_user
 from app import flask_app
-from app.forms import LoginForm
+from app.forms import LoginForm, SignUpForm
 from app.models import Post, Game, Platform, User
 from app import template_filters
 from app import functions
@@ -49,11 +49,11 @@ def how_to_page():
                            title="How-To")
 
 @flask_app.route("/logIn", methods=["GET", "POST"])
-def log_in_page():
+def login_page():
     login_form = LoginForm()
     if request.method == "GET":
         return render_template("logIn.html", 
-                                title="Log-In",
+                                title="Login",
                                 form = login_form)
     if request.method == "POST":
         user_email = login_form.email.data
@@ -61,19 +61,46 @@ def log_in_page():
         if not user:
             flash("User not found.", 'error')
             return render_template("logIn.html", 
-                                title="Log-In",        
+                                title="Login",        
                                 form = login_form)
         
         password = login_form.password.data
         if not user.check_password(password):
             flash("Incorrect password.", 'error')
             return render_template("logIn.html", 
-                                title="Log-In",
+                                title="Login",
                                 form = login_form)
         
         # If all successful, login the user
         login_user(user)
         return redirect(url_for("home_page"))
+    
+@flask_app.route("/signUp", methods=["GET", "POST"])
+def sign_up_page():
+    sign_up_form = SignUpForm()
+    if request.method == "GET":
+        return render_template("signUp.html", 
+                                title="Sign-Up",
+                                form = sign_up_form)
+    if request.method == "POST":
+        user_email = sign_up_form.email.data
+        user = User.query.filter(User.email == user_email).first()
+        if user:
+            flash("User already exists.", 'error')
+            return render_template("signUp.html", 
+                                title="Sign-Up")
+        
+        user_name = sign_up_form.username.data
+        password = sign_up_form.password.data
+        if password != sign_up_form.confirm.data:
+            flash("Passwords do not match.", 'error')
+            return render_template("signUp.html", 
+                                title="Sign-Up")
+        
+        # db.session.add(User(username=user_name, email=user_email, password=password))
+        # db.session.commit()
+        return redirect(url_for("home_page"))
+        
     
 @flask_app.route("/logout")
 @login_required

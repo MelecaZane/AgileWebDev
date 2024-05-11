@@ -284,6 +284,11 @@ $(document).ready(function() {
         $(field).next('.invalid-feedback').hide(); // Hide error message
     }
 
+    // Email validation function
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
     // Basic Form Validation
     $("#Sign-Up").submit(function(event) {
         var isError = false;
@@ -298,10 +303,22 @@ $(document).ready(function() {
             }
         });
 
-        // Check if passwords match
+        // Validate email
+        if (!isValidEmail($("#email").val())) {
+            showError("#email", "Please enter a valid email address.");
+            isError = true;
+        } else {
+            clearError("#email");
+        }
+
+        // Check if passwords match and are at least 6 characters long
         if ($("#password").val() !== $("#password2").val()) {
             showError("#password", "Passwords do not match!");
             showError("#password2", "Passwords do not match!");
+            isError = true;
+        } else if ($("#password").val().length < 6) {
+            showError("#password", "Password must be at least 6 characters long.");
+            showError("#password2", "Password must be at least 6 characters long.");
             isError = true;
         } else {
             if (!fieldIsEmpty("#password") && !fieldIsEmpty("#password2")) {

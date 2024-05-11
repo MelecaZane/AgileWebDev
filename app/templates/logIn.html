@@ -18,9 +18,18 @@
                 <div class="card bg-dark mt-4">
                     <button type="button" class="btn-close" aria-label="Close" onclick="location.href='{{ url_for('home_page')}}'"></button>
                     <div class="card-body">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <ul class=flashes>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
                         <h1 class="card-title">Login</h1>
                         <br>
-                        <form action="/logIn" method="post" id="Log-In">
+                        <form action="/logIn" method="post" id="login">
                             <div class="mb-3">
                                 {{ form.hidden_tag() }}
                                 <label for="email" class="form-label">Email Address:</label>
@@ -38,7 +47,7 @@
                                 {{form.submit(onclick="return loginVal();", class="btn btn-primary w-100", id="LoginBtn")}}
                             </div>
                             <div class="mb-3 mt-4 text-center">
-                                <p class="normtxt">Don't have an account? <a href="#" onclick="location.href='{{ url_for('sign_up')}}'">Sign-Up</a></p>
+                                <p class="normtxt">Don't have an account? <a href="#" onclick="location.href='{{ url_for('sign_up_page')}}'">Sign-Up</a></p>
                             </div>
                         </form>
                     </div>

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/app/static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/app/static/script.js"></script>
+    <script src="/static/script.js"></script>
     <script src="https://kit.fontawesome.com/96ce613701.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -15,40 +16,50 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card bg-dark">
-                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    <button type="button" class="btn-close" aria-label="Close" onclick="location.href='{{ url_for('home_page')}}'"></button>
                     <div class="card-body">
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <ul class=flashes>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
                         <h1 class="card-title">Sign-Up</h1><br>
                         <p class="signUp">Please fill in this form to create an account.</p>
                         <form action="/signUp" method="post" id="Sign-Up">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name:</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="First name">
+                                {{ form.hidden_tag() }}
+                                <label for="Fname" class="form-label">Name:</label>
+                                {{form.name(class="form-control", id="name", placeholder="First name")}}
                             </div>
                             <div class = "mb-3">
                                 <label for="usename" class="form-label">Username:</label>
-                                <input type="text" class="form-control" id="username" name="username" placeholder="Your display name:">
+                                {{form.username(class="form-control", id="username", placeholder="Your display name")}}
                             </div>
                             <div class="mb-3">
                                 <label for="age" class="form-label">Age:</label>
-                                <input type="number" class="form-control" id="age" name="age" min="1" max="99" step="1">
+                                {{form.age(class="form-control", id="age", min="1", max="99", step="1")}}
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address:</label>
-                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                                {{form.email(class="form-control", id="email")}}
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password:</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                {{form.password(class="form-control", id="password")}}
                             </div>
                             <div class="mb-3">
                                 <label for="password2" class="form-label">Confirm Password:</label>
-                                <input type="password" class="form-control" id="password2" name="password2">
+                                {{form.password2(class="form-control", id="password2")}}
                             </div>
                             <div class="mb-3 mt-4">
-                                <button type="submit" class="btn btn-primary w-100">Sign-Up</button>
+                                {{form.submit(class="btn btn-primary w-100")}}
                             </div>
                             <div class="mb-3 mt-4 text-center">
-                                <p>Already have an account? <a href="/signIn">Log In</a></p>
+                                <p>Already have an account? <a href="#" onclick="location.href='{{ url_for('login_page')}}'">Log In</a></p>
                             </div>
                         </form>
                     </div>
