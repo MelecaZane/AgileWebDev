@@ -20,16 +20,16 @@
                         {% endif %}
                     </p>
                     {% if post[8] == 1 %} <!-- Platform Icon -->
-                        <i class='fas fa-desktop' style='font-size:24px;'></i>
+                        <i class='fas fa-desktop' style='font-size:24px; float: left;'></i>
                     {% elif post[8] == 2 %}
-                        <i class='fab fa-xbox' style='font-size:24px;'></i>
+                        <i class='fab fa-xbox' style='font-size:24px; float: left;'></i>
                     {% elif post[8] == 3 %}
-                        <i class='fab fa-playstation' style='font-size:24px;'></i>
+                        <i class='fab fa-playstation' style='font-size:24px; float: left;'></i>
                     {% else %}
-                        <i class='fab fa-question' style='font-size:24px;'></i>
+                        <i class='fab fa-question' style='font-size:24px; float: left;'></i>
                     {% endif %}
                     <div>
-                        <h4>{{ post[2] }}</h4> <!-- Username -->
+                        <h4 style="padding-left: 35px">{{ post[2] }}</h4> <!-- Username -->
                         {{ form.post_id(content=post[1], value=post[1]) }}
                         {% if current_user.user_id == post[11] %}
                             <button type="button" class="btn btn-primary" disabled>Your Post</button>
