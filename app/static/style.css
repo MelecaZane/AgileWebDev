@@ -126,7 +126,7 @@ nav {
     color: #aaa;
 }
 
-.text-break, #steps, h1, #contact-us, #faqs,  #Sign-Up, .signUp {
+.text-break, #steps, h1, #contact-us, #faqs,  #Sign-Up, .signUp, .form-label, .normtxt{
     color: aliceblue;
 }
 

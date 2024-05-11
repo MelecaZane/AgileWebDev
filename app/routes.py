@@ -48,27 +48,27 @@ def how_to_page():
     return render_template("howTo.html", 
                            title="How-To")
 
-@flask_app.route("/signIn", methods=["GET", "POST"])
-def sign_in_page():
+@flask_app.route("/logIn", methods=["GET", "POST"])
+def log_in_page():
     login_form = LoginForm()
     if request.method == "GET":
-        return render_template("signIn.html", 
-                                title="Sign-In",
+        return render_template("logIn.html", 
+                                title="Log-In",
                                 form = login_form)
     if request.method == "POST":
         user_email = login_form.email.data
         user = User.query.filter(User.email == user_email).first()
         if not user:
             flash("User not found.", 'error')
-            return render_template("signIn.html", 
-                                title="Sign-In",        
+            return render_template("logIn.html", 
+                                title="Log-In",        
                                 form = login_form)
         
         password = login_form.password.data
         if not user.check_password(password):
             flash("Incorrect password.", 'error')
-            return render_template("signIn.html", 
-                                title="Sign-In",
+            return render_template("logIn.html", 
+                                title="Log-In",
                                 form = login_form)
         
         # If all successful, login the user
