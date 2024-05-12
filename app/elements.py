@@ -49,7 +49,7 @@ def footer():
                     <div class="col-sm-4 footer-title text-wrap">
                         <strong>PAGES</strong>
                         <div class="footer-text">
-                            <a href="/homepage">Home</a><br>
+                            <a href="/">Home</a><br>
                             <a href="/comingsoon">About</a><br>
                             <a href="/newPost">Create Post</a>
                         </div>
