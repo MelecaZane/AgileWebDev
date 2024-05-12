@@ -24,6 +24,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     in_post = db.Column(db.Integer, nullable=True, default=None)
+    name = db.Column(db.String(64), nullable=False)
+    age = db.Column(db.Integer, nullable=False)
 
     posts = db.relationship('Post', back_populates='user')
 
