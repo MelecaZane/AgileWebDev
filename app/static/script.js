@@ -198,66 +198,72 @@ function showError(InputBoxID,Message){
 	
 }
 
-/* checks if the email is valid */
-function emailVal(email){
+/* Login form validation */
 
-	const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+$(document).ready(function() {
+    // Function to check if a field is empty
+    function fieldIsEmpty(field) {
+        return $.trim($(field).val()) === "";
+    }
 
-	if(email == ""){
-		return "Please fill the field.";
-	}
+    // Function to show error message
+    function showError(field, message) {
+        var feedback = $(field).next('.invalid-feedback');
+        if (feedback.length === 0) { // If no error div exists, create one
+            $(field).after('<div class="invalid-feedback" style="color: red; display:block;">' + message + '</div>');
+        } else { // Update message if div already exists
+            feedback.text(message).show();
+        }
+        $(field).addClass('is-invalid');
+    }
 
-	if(emailRegex.test(email) == false){
-		return "This is not a valid email.";
-	}
+    // Function to clear error message
+    function clearError(field) {
+        $(field).removeClass('is-invalid');
+        $(field).next('.invalid-feedback').hide(); // Hide error message
+    }
 
-	return "valid";
-}
+    // Email validation function
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
 
-/* checks if password is valid */
-function passwordVal(password) {
-	
-	const minLength = 8;
-	// const maxLength = 32;
-	const letterNumberRegexSpecialChar = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+    // Basic Form Validation
+    $("#login").submit(function(event) {
+        var isError = false;
 
-	if(password == ""){
-		return "Please fill the field."
-	}
+        // Check required fields (email and password)
+        $("#login-email, #login-pass").each(function() {
+            if (fieldIsEmpty(this)) {
+                showError(this, "This field is required.");
+                isError = true;
+            } else {
+                clearError(this);
+            }
+        });
 
-	if (password.length < minLength) {   // || password.length > maxLength
-		return "Password length should be minimum 8 & maximum 32 characters.";
-	}
+        // Validate email
+        if (!isValidEmail($("#login-email").val())) {
+            showError("#login-email", "Please enter a valid email address.");
+            isError = true;
+        } else {
+            clearError("#login-email");
+        }
 
-	if (!letterNumberRegexSpecialChar.test(password)) {
-		return "Password should contain alphabetic, numeric and special characters.";
-	}
-	return "valid";
-}
+        // Check if password is at least 6 characters long
+        if ($("#login-pass").val().length < 6) {
+            showError("#login-pass", "Password must be at least 6 characters long.");
+            isError = true;
+        } else {
+            clearError("#login-pass");
+        }
 
-/* validate login email and password */
-function loginVal() {
-	removeError();
-
-	var email = document.getElementById('login-email').value;
-	var password = document.getElementById('login-pass').value;
-	var PasswordValidationMessage;
-	var	emailValidationMessage;
-
-	emailValidationMessage = emailVal(email);
-	if(emailValidationMessage != "valid"){
-		showError('login-email',emailValidationMessage);
-		return false;
-	}
-	
-	PasswordValidationMessage = passwordVal(password);
-	if(PasswordValidationMessage != "valid"){
-		showError('login-pass',PasswordValidationMessage);
-		return false;
-	}
-	
-	return true;
-}
+        if (isError) {
+            event.preventDefault(); // Stop form submission
+        }
+        // If no error, form will submit normally
+    });
+});
 
 /* Sign-up form validation */
 
