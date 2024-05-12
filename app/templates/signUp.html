@@ -18,6 +18,8 @@
                 <div class="card bg-dark">
                     <button type="button" class="btn-close" aria-label="Close" onclick="location.href='{{ url_for('home_page')}}'"></button>
                     <div class="card-body">
+                        <h1 class="card-title">Sign-Up</h1><br>
+                        <p class="signUp">Please fill in this form to create an account.</p>
                         {% with messages = get_flashed_messages() %}
                             {% if messages %}
                                 <ul class=flashes>
@@ -27,8 +29,6 @@
                                 </ul>
                             {% endif %}
                         {% endwith %}
-                        <h1 class="card-title">Sign-Up</h1><br>
-                        <p class="signUp">Please fill in this form to create an account.</p>
                         <form action="/signUp" method="post" id="Sign-Up">
                             <div class="mb-3">
                                 {{ form.hidden_tag() }}
@@ -41,7 +41,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="age" class="form-label">Age:</label>
-                                {{form.age(class="form-control", id="age", min="1", max="99", step="1")}}
+                                {{form.age(class="form-control", id="age", min="1", max="99", step="1", type="number")}}
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email address:</label>
