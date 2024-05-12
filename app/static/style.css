@@ -2,83 +2,68 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: rgb(32, 33, 35);
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6; /* Sets line height for readability */
-    margin: 0; /* Centers the body on the page */
-    padding: 0px; /* Adds padding around the content */
-    overflow-x: hidden; /* Hides horizontal scrollbar */
     height: 100%;
-    
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: rgb(32, 33, 35);
+    overflow-x: hidden;
 }
 
-.flashes {
-    color: #ff5b5b;
-}
-
-@media (max-width: 768px) {
-    #replyTxtArea {
-        width: 90%; /* Slightly wider on smaller screens */
-        height: 60px;
-    }
-    #newPostBox, .Posts {
-        padding: 10px;
-        width: 95%; /* increases width on smaller screens */
-        margin-top: 65px; /* adjust top margin to align properly under navbar */
-    }
-    .navbar-toggler {
-        margin-right: 15px;
-    }
-
-    #newPostbtn, #standardBtn {
-        width: 100%; /* Full width button on smaller screens */
-        margin-top: 15px;
-    }
-}
-
-#mainPosts{
-    padding-top: 10px;
+nav {
+    background-color: #202123;
+    text-align: center;
 }
 
 .navbar-brand {
     padding-left: 12px;
 }
 
-nav{
-    background-color: #202123;
-    text-align: center;
+.navbar-toggler {
+    margin-right: 15px;
 }
 
-#newPostHead{
+.flashes {
+    color: #ff5b5b;
+}
+
+#mainPosts, #newPostHead, #steps, #newPostBox, .Posts {
     padding-top: 10px;
-    padding-bottom: 30px;
+}
+
+#mainPosts {
+    padding-top: 10px;
+}
+
+#newPostHead, #steps {
     text-align: center;
+    padding-bottom: 30px;
+}
+
+#newPostBox, .Posts {
+    background-color: rgb(47, 56, 63);
+    color: #fff;
+    border-radius: 5px;
 }
 
 #newPostBox {
-    flex: 1 0 auto; /* allows the new post box to expand and fill available space */
+    flex: 1 0 auto;
     padding: 20px;
-    margin-top: 70px; /* increased to account for navbar height */
-    margin-bottom: 30px; /* ensures space between content and footer */
+    margin-top: 70px;
+    margin-bottom: 30px;
     width: 80%;
-    max-width: 1200px; /* optional: limits width on larger screens */
-    background-color:rgb(47, 56, 63);
-    border-radius: 5px;
-    color: #fff;
+    max-width: 1200px;
 }
 
-.Posts{
+.Posts {
     border: 2px solid #333;
-    border-radius: 5px;
-    margin-top: 20px;
-    background-color: rgb(47, 56, 63);
     padding-left: 10px;
     padding-bottom: 10px;
-    color: #fff;
+    margin-top: 20px;
 }
 
-#standardBtn, #newPostbtn{
+#standardBtn, #newPostbtn {
     background-color: #007bff;
     color: white;
     border: none;
@@ -88,22 +73,21 @@ nav{
 
 #newPostbtn {
     padding: 10px 20px;
-    margin-top: 210px; /* Provide some top margin for spacing */
+    margin-top: 210px;
 }
 
 .form-control, .form-select {
-    background-color: #ffffff; /* Darker background for form elements */;
+    background-color: #ffffff;
     color: black;
-    border-color: rgba(64,79,86,255);
+    border-color: rgba(64, 79, 86, 255);
 }
 
 .tags-input-container {
-    border-radius: 4px;
-    flex-wrap: wrap;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     background: #fff;
+    border-radius: 4px;
 }
 
 .tag {
@@ -115,16 +99,13 @@ nav{
     margin-bottom: 5px;
     border-radius: 3px;
     color: white;
-    word-break: break-all; /* Allow the word to break and wrap to the next line */
-    max-width: 100%; /* Prevents the tag from extending beyond the container width */
+    max-width: 100%;
 }
 
 .tag .remove-tag {
-    display: inline-block;
     background: #035dbd;
     width: 18px;
     height: 18px;
-    line-height: 18px;
     text-align: center;
     margin-left: 5px;
     cursor: pointer;
@@ -145,36 +126,85 @@ nav{
     color: #aaa;
 }
 
-#tags-input:focus {
-    outline: none;
-}
-
-.text-break, #steps, h1, #contact-us, #faqs {
+.text-break, #steps, h1, #contact-us, #faqs,  #Sign-Up, .signUp, .form-label, .normtxt{
     color: aliceblue;
 }
 
-.text-wrap {
-    color: aliceblue;
+.card .btn-close {
+    filter: invert();
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+    font-size: 20px; /* Increases the size of the icon */
 }
 
-#steps {
-    flex: 1 0 auto;
-    padding: 40px 20px;
-    margin-top: 100px; /* Adjusted for navbar height */
-    margin-bottom: 30px;
-    width: 100%;
+.card {
+    position: relative; /* This makes the child position:absolute work as intended */
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+img {
     max-width: 100%;
-    background-color: rgb(47, 56, 63);
-    border-radius: 5px;
-    color: #fff;
-    text-align: center; /* Centers text inside the #steps div */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers child elements like headings and paragraphs */
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+
+#contact-us, #faqs {
+    position: absolute;
+    top: 20px;
+    display: inline-block;
+}
+
+#faqs {
+    left: 150px;
+}
+
+#contact-us h6, #faqs h6 {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    #replyTxtArea, #newPostBox, .Posts {
+        width: 90%;
+    }
+
+    #replyTxtArea {
+        height: 60px;
+    }
+
+    .navbar-toggler, #newPostbtn, #standardBtn {
+        margin-right: 15px;
+        width: 100%;
+    }
+
+    #newPostbtn, #standardBtn {
+        margin-top: 15px;
+    }
 }
 
 #footer {
-    flex-shrink: 0; /* prevents the footer from shrinking */
+    flex-shrink: 0;
     width: 100%;
     background-color: #333;
     color: white;
@@ -183,259 +213,16 @@ nav{
 }
 
 .footer-title {
-    font-weight: bold; /* Bold the title */
-    margin-bottom: 5px; /* Space between title and links */
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .footer-text a {
-    color: white; /* Ensuring link colors are also white */
-    text-decoration: none; /* No underlines on links */
-    font-size: 14px; /* Smaller font size for links */
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 .footer-text a:hover {
-    text-decoration: underline; /* Underline on hover for better interaction */
+    text-decoration: underline;
 }
-
-
-
-#replyTxtArea{
-    width: 50%;
-    height: 80px;
-    margin-bottom: 5px;
-    resize: none;
-}
-
-
-h1 {
-    font-size: 50px; /* Larger font size for the main heading */
-    text-align: center; /* Centers the main heading */
-    margin-bottom: 20px; /* Adds space below the heading */
-}
-
-h2 {
-    margin-top: 20px; /* Adds space above each h2 heading */
-    font-size: 24px; /* Sets font size for h2 headings */
-    font-weight: bold; /* Makes h2 headings bold */
-}
-
-p {
-    margin-bottom: 10px; /* Adds space below each paragraph */
-}
-
-/* Styles for images */
-img {
-    max-width: 100%; /* Ensures images fit within their container */
-    height: auto; /* Maintains aspect ratio */
-    display: block; /* Displays images as block elements */
-    margin: 20px auto; /* Centers images and adds space around them */
-}
-
-/* Positioning Contact Us and FAQs sections at the top */
-#contact-us, #faqs {
-    position: absolute; /* Positions the sections absolutely */
-    top: 20px; /* Distance from the top of the page */
-    display: inline-block; /* Ensures the sections are inline */
-}
-
-/* Adjusting position of FAQs section */
-#faqs {
-    left: 150px; /* Adjusts the left position to provide space from Contact Us */
-}
-
-/* Styles for Contact Us and FAQs h6 headings */
-#contact-us h6, #faqs h6 {
-    font-size: 20px; /* Sets font size for h6 headings */
-    font-weight: bold; /* Makes h6 headings bold */
-    text-decoration: underline; /* Underlines the text */
-}
-
-/* ----------------------------   start of style for signin signup forgot reset pages --------------------------*/
-
-.gradient-custom-1 {
-
-background: rgb(47,56,63);
-}
-
-#sign1{
-    margin-top: 60px;
-}
-
-#sign2{
-    border-style: none;
-    /*border-width: 0px */
-}
-.card-registration .select-input.form-control[readonly]:not([disabled]) {
-font-size: 1rem;
-line-height: 2.15;
-padding-left: .75em;
-padding-right: .75em;
-}
-
-.card-registration .select-arrow {
-top: 13px;
-}
-
-.center{
-	text-align: center;
-}
-.mt-10{
-	margin-top: 10px;
-}
-.mt-20{
-	margin-top: 20px;
-}
-
-
-#login-reg-form{
-	width: 350px;
-	background: #fff;
-	margin: 230px auto;
-	border-radius: 10px;
-	box-sizing: border-box;
-	padding: 10px;
-	transform: scale(1.2);
-	box-shadow: 0px 0px 6px 0px #cdcdcd;
-}
-
-#form-title{
-	text-align: center;
-    color:#000000;
-	padding-top: 10px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bolder;
-	letter-spacing: 1px;
-	font-size: 25px;
-}
-
-#form-switch-btn{
-	display: flex;
-	justify-content: center;
-	padding: 20px 0px;
-}
-#form-switch-btn button{
-	font-size: 17px;
-	letter-spacing: 1px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bolder;
-	width: 160px;
-	height: 40px;
-	border: 0px;
-	cursor: pointer;
-	position: relative;
-	background: transparent;
-	border: 1px solid #747474;
-	transition: 0.4s;
-}
-#form-switch-btn .active{
-	color: #fff;
-	background: #747474;
-}
-.input-text{
-	width: 100%;
-	height: 38px;
-	border: 0px;
-	border: 1px solid #747474;
-	box-sizing: border-box;
-	padding: 5px;
-	border-radius: 5px;
-	font-size: 17px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-.input-text:focus{
-	outline: none;
-}
-
-.forgot-pass-remember-me{
-	display: flex;
-	justify-content: center;
-	gap: 90px;
-	font-size: 14px;
-}
-
-.forgot-pass-remember-me #forgot-pass{
-	color: #002b27;
-	font-weight: bold;
-	transition: 0.4s;
-}
-.forgot-pass-remember-me #forgot-pass:hover{
-	color: #008d7f;
-}
-
-.forgot-pass-remember-me input{
-	height: 12px;
-}
-.forgot-pass-remember-me label{
-	font-family: Arial, Helvetica, sans-serif;
-}
-.forgot-pass-remember-me a{
-	text-decoration: none;
-	font-family: Arial, Helvetica, sans-serif;
-	font-style: italic;
-}
-.Submit-Btn{
-	width: 100%;
-	height: 42px;
-	border: 0px;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 17px;
-	letter-spacing: 1px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bolder;
-	transition: 0.4s;
-	background-color: #747474;
-	color: #fff;
-}
-.Submit-Btn:hover{
-	background-color: #444444;
-	color: #fff;
-	
-}
-.dont-have-account,
-.already-have-account{
-	font-family: Arial, Helvetica, sans-serif;
-	letter-spacing: 0.3px;
-	font-size: 14px;
-	color: #747474;
-}
-.dont-have-account a,
-.already-have-account a{
-	font-family: Arial, Helvetica, sans-serif;
-	font-style: italic !important;
-	text-decoration: none;
-	color: #002b27;
-	font-weight: bold;
-	transition: 0.4s;
-}
-.dont-have-account a:hover,
-.already-have-account a:hover{
-	color: #008d7f;
-}
-
-#register-form,
-#forgot-form{
-	display: none;
-}
-.error-input{
-	border: 1px solid #ff5b5b;
-}
-.error-message{
-	font-size: 11px; 
-	font-weight: bold; 
-	color: #ff5b5b;
-	text-align: left; 
-	margin: 0px; 
-	padding: 0px; 
-	margin-top: 2px; 
-}
-
-.footer-forgot{
-    position:fixed;
-    left: 0;
-    bottom: 0;
-}
-
-/* -----------------------------------end of signin signup forgot reset style ------------------------------------*/
-
