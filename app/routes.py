@@ -35,7 +35,7 @@ def home_page():
 
 @login.unauthorized_handler
 def unauthorized():
-    return redirect(url_for("sign_in_page"))
+    return redirect(url_for("login_page"))
 
 @flask_app.route("/newPost", methods=["GET", "POST"])
 @login_required
