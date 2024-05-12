@@ -115,6 +115,14 @@ def sign_up_page():
                                 form=sign_up_form)
         
         user_name = sign_up_form.username.data
+        user = User.query.filter(User.username == user_name).first()
+        if user:
+            flash("Username already exists.", 'error')
+            return render_template("signUp.html", 
+                                title="Sign-Up",
+                                form=sign_up_form)
+
+
         password = sign_up_form.password.data
         if password != sign_up_form.password2.data:
             flash("Passwords do not match.", 'error')
