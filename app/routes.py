@@ -5,6 +5,7 @@ from app.forms import LoginForm, ExistingPostForm, SignUpForm
 from app.models import Post, Game, Platform, User
 from app import template_filters
 from app import functions
+from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login
 
 @flask_app.route("/", methods=["GET", "POST"])
@@ -115,14 +116,16 @@ def sign_up_page():
         
         user_name = sign_up_form.username.data
         password = sign_up_form.password.data
-        if password != sign_up_form.confirm.data:
+        if password != sign_up_form.password2.data:
             flash("Passwords do not match.", 'error')
             return render_template("signUp.html", 
                                 title="Sign-Up",
                                 form=sign_up_form)
         
-        # db.session.add(User(username=user_name, email=user_email, password=password))
-        # db.session.commit()
+        db.session.add(User(username=user_name, email=user_email, password_hash=generate_password_hash(password),\
+                            name=sign_up_form.name.data, age=sign_up_form.age.data))
+        db.session.commit()
+        login_user(User.query.filter(User.email == user_email).first())
         return redirect(url_for("home_page"))
         
     
