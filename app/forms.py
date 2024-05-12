@@ -14,7 +14,7 @@ class ExistingPostForm(FlaskForm):
 
 class SignUpForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
-    age = StringField('Age', validators=[DataRequired()])
+    age = IntegerField('Age', validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])

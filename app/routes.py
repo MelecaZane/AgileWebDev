@@ -107,12 +107,19 @@ def sign_up_page():
             return render_template("signUp.html", 
                                 title="Sign-Up")
         
+        if sign_up_form.age.data < 13:
+            flash("You must be at least 13 years of age to sign up.", 'error')
+            return render_template("signUp.html", 
+                                title="Sign-Up",
+                                form=sign_up_form)
+        
         user_name = sign_up_form.username.data
         password = sign_up_form.password.data
         if password != sign_up_form.confirm.data:
             flash("Passwords do not match.", 'error')
             return render_template("signUp.html", 
-                                title="Sign-Up")
+                                title="Sign-Up",
+                                form=sign_up_form)
         
         # db.session.add(User(username=user_name, email=user_email, password=password))
         # db.session.commit()
