@@ -198,165 +198,148 @@ function showError(InputBoxID,Message){
 	
 }
 
-/* checks if the email is valid */
-function emailVal(email){
+/* Login form validation */
 
-	const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+$(document).ready(function() {
+    // Function to check if a field is empty
+    function fieldIsEmpty(field) {
+        return $.trim($(field).val()) === "";
+    }
 
-	if(email == ""){
-		return "Please fill the field.";
-	}
+    // Function to show error message
+    function showError(field, message) {
+        var feedback = $(field).next('.invalid-feedback');
+        if (feedback.length === 0) { // If no error div exists, create one
+            $(field).after('<div class="invalid-feedback" style="color: red; display:block;">' + message + '</div>');
+        } else { // Update message if div already exists
+            feedback.text(message).show();
+        }
+        $(field).addClass('is-invalid');
+    }
 
-	if(emailRegex.test(email) == false){
-		return "This is not a valid email.";
-	}
+    // Function to clear error message
+    function clearError(field) {
+        $(field).removeClass('is-invalid');
+        $(field).next('.invalid-feedback').hide(); // Hide error message
+    }
 
-	return "valid";
-}
+    // Email validation function
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
 
-/* checks if password is valid */
-function passwordVal(password) {
-	
-	const minLength = 8;
-	// const maxLength = 32;
-	const letterNumberRegexSpecialChar = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+    // Basic Form Validation
+    $("#login").submit(function(event) {
+        var isError = false;
 
-	if(password == ""){
-		return "Please fill the field."
-	}
+        // Check required fields (email and password)
+        $("#login-email, #login-pass").each(function() {
+            if (fieldIsEmpty(this)) {
+                showError(this, "This field is required.");
+                isError = true;
+            } else {
+                clearError(this);
+            }
+        });
 
-	if (password.length < minLength) {   // || password.length > maxLength
-		return "Password length should be minimum 8 & maximum 32 characters.";
-	}
+        // Validate email
+        if (!isValidEmail($("#login-email").val())) {
+            showError("#login-email", "Please enter a valid email address.");
+            isError = true;
+        } else {
+            clearError("#login-email");
+        }
 
-	if (!letterNumberRegexSpecialChar.test(password)) {
-		return "Password should contain alphabetic, numeric and special characters.";
-	}
-	return "valid";
-}
+        // Check if password is at least 6 characters long
+        if ($("#login-pass").val().length < 6) {
+            showError("#login-pass", "Password must be at least 6 characters long.");
+            isError = true;
+        } else {
+            clearError("#login-pass");
+        }
 
-/* validate login email and password */
-function loginVal() {
-	removeError();
+        if (isError) {
+            event.preventDefault(); // Stop form submission
+        }
+        // If no error, form will submit normally
+    });
+});
 
-	var email = document.getElementById('login-email').value;
-	var password = document.getElementById('login-pass').value;
-	var PasswordValidationMessage;
-	var	emailValidationMessage;
+/* Sign-up form validation */
 
-	emailValidationMessage = emailVal(email);
-	if(emailValidationMessage != "valid"){
-		showError('login-email',emailValidationMessage);
-		return false;
-	}
-	
-	PasswordValidationMessage = passwordVal(password);
-	if(PasswordValidationMessage != "valid"){
-		showError('login-pass',PasswordValidationMessage);
-		return false;
-	}
-	
-	return true;
-}
+$(document).ready(function() {
+    // Function to check if a field is empty
+    function fieldIsEmpty(field) {
+        return $.trim($(field).val()) === "";
+    }
 
-/* validate registration name, email and password */
-function registerVal(){
+    // Function to show error message
+    function showError(field, message) {
+        var feedback = $(field).next('.invalid-feedback');
+        if (feedback.length === 0) { // If no error div exists, create one
+            $(field).after('<div class="invalid-feedback" style="color: red; display:block;">' + message + '</div>');
+        } else { // Update message if div already exists
+            feedback.text(message).show();
+        }
+        $(field).addClass('is-invalid');
+    }
 
-	removeError();
+    // Function to clear error message
+    function clearError(field) {
+        $(field).removeClass('is-invalid');
+        $(field).next('.invalid-feedback').hide(); // Hide error message
+    }
 
-	var RegiName = document.getElementById('RegiName').value;
-	var RegiEmailAddres = document.getElementById('RegiEmailAddres').value;
-	var RegiPassword = document.getElementById('RegiPassword').value;
-	var RegiConfirmPassword = document.getElementById('RegiConfirmPassword').value;
+    // Email validation function
+    function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
 
-	var PasswordValidationMessage;
-	var ConfirmPasswordMessage;
-	var	emailValidationMessage;
+    // Basic Form Validation
+    $("#Sign-Up").submit(function(event) {
+        var isError = false;
 
-	if(RegiName == ""){
-		showError('RegiName',"Please fill the filed.");
-		return false;
-	}else if(RegiName.length < 3 || RegiName.length > 20){
-		showError('RegiName',"Name should be minimum 3 and maximum 20 characters long.");
-		return false;
-	}
+        // Check required fields
+        $("#name, #username, #age, #email, #password, #password2").each(function() {
+            if (fieldIsEmpty(this)) {
+                showError(this, "This field is required.");
+                isError = true;
+            } else {
+                clearError(this);
+            }
+        });
 
-	emailValidationMessage = emailVal(RegiEmailAddres);
+        // Validate email
+        if (!isValidEmail($("#email").val())) {
+            showError("#email", "Please enter a valid email address.");
+            isError = true;
+        } else {
+            clearError("#email");
+        }
 
-	if(emailValidationMessage != "valid"){
-		showError('RegiEmailAddres',emailValidationMessage);
-		return false;
-	}
-	
-	PasswordValidationMessage = passwordVal(RegiPassword);
-	if(PasswordValidationMessage != "valid"){
-		showError('RegiPassword',PasswordValidationMessage);
-		return false;
-	}
-	
-	ConfirmPasswordMessage = passwordVal(RegiConfirmPassword);
-	if(ConfirmPasswordMessage != "valid"){
-		showError('RegiConfirmPassword',ConfirmPasswordMessage);
-		return false;
-	}
+        // Check if passwords match and are at least 6 characters long
+        if ($("#password").val() !== $("#password2").val()) {
+            showError("#password", "Passwords do not match!");
+            showError("#password2", "Passwords do not match!");
+            isError = true;
+        } else if ($("#password").val().length < 6) {
+            showError("#password", "Password must be at least 6 characters long.");
+            showError("#password2", "Password must be at least 6 characters long.");
+            isError = true;
+        } else {
+            if (!fieldIsEmpty("#password") && !fieldIsEmpty("#password2")) {
+                clearError("#password");
+                clearError("#password2");
+            }
+        }
 
-	if(RegiPassword != RegiConfirmPassword){
-		showError('RegiConfirmPassword',"Password not match.");
-		return false;
-	}
+        if (isError) {
+            event.preventDefault(); // Stop form submission
+        }
+        // If no error, form will submit normally
+    });
+});
 
-	return true;
-}
-
-/* validate the email entered in forgot password page */
-function forgotVal(){
-
-	removeError();
-
-	var forgotPassEmail = document.getElementById('forgotPassEmail').value;
-	
-	var	emailValidationMessage;
-	emailValidationMessage = emailVal(forgotPassEmail);
-
-	if(emailValidationMessage != "valid"){
-		showError('forgotPassEmail',emailValidationMessage);
-		return false;
-	}
-}
-
-
-/* it validates paswords entered in the reset password page */
-function resetVal(){
-
-	removeError();
-
-	var NewPassword = document.getElementById('NewPassword').value;
-	var ConfirmNewPassword = document.getElementById('ConfirmNewPassword').value;
-
-	var PasswordValidationMessage;
-	var ConfirmPasswordMessage;
-	
-	PasswordValidationMessage = passwordVal(NewPassword);
-	if(PasswordValidationMessage != "valid"){
-		showError('NewPassword',PasswordValidationMessage);
-		return false;
-	}
-	
-	ConfirmPasswordMessage = passwordVal(ConfirmNewPassword);
-	if(ConfirmPasswordMessage != "valid"){
-		showError('ConfirmNewPassword',ConfirmPasswordMessage);
-		return false;
-	}
-
-	if(NewPassword != ConfirmNewPassword){
-		showError('ConfirmNewPassword',"Password not match.");
-		return false;
-	}
-
-	return true;
-}
-
-/* ---------------------------------- end of isValid.js for reset signin signup forgot pages ----------------------------*/ 
 
 function isEmptyOrWhitespace(str){
     return str.trim().length === 0;

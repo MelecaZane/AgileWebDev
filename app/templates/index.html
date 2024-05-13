@@ -1,34 +1,68 @@
-<html lang="en">
-<!-- Inserts head and allows <> tag delimiters to be inserted -->
-{{ head|safe }}
-<body>
-    {{ navbar|safe}}
-
-    <div class="container mt-5" id="mainPosts">
-        <ol>
-
-            {% for post in posts %}
-            <li class="Posts">
-                <h3>{{ post[2] }}</h3>
-                <p>{{ post[7]|datetime}}</p>
-                <p>
-                    {% for tag in post[5]|tag_list %}
-                    {{ tag }}
-                    {% endfor %}
-                </p>
-                <i class='fab fa-playstation' style='font-size:24px;'></i>
-                <div>
-                    <h4>{{ post[9] }}</h4>
-                    <p>{{ post[6] }}</p>
-                    <p>Looking for players: {{ post[4] }} </p>
-                    <textarea id="replyTxtArea" class="form-control" rows="3" placeholder="Reply to this post"></textarea><br>
-                    <button type="reply" class="btn btn-primary" id="standardBtn">Reply</button><br><br>
-                    <button type="join" class="btn btn-primary" id="standardBtn">Join</button>
+{% extends "base.html" %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+    
+<div class="container mt-5" id="mainPosts">
+    <ol>
+        {% for post in posts %}
+        <li class="Posts" id="{{ post[1] }}">
+            <form method='POST'>
+            <div class="row">
+                <div class="col-md-6" id="left-post-column">
+                    <h3>{{ post[9] }}</h3> <!-- Post Title -->
+                    <p>{{ post[7]|datetime }}</p> <!-- Time -->
+                    <p>{{ post[3] }}</p> <!-- Game -->
+                    <p> <!-- Tags -->
+                        {% if post[5] != "" %}
+                            {% for tag in post[5]|tag_list %}
+                            #{{ tag }},
+                            {% endfor %}
+                        {% endif %}
+                    </p>
+                    {% if post[8] == 1 %} <!-- Platform Icon -->
+                        <i class='fas fa-desktop' style='font-size:24px; float: left;'></i>
+                    {% elif post[8] == 2 %}
+                        <i class='fab fa-xbox' style='font-size:24px; float: left;'></i>
+                    {% elif post[8] == 3 %}
+                        <i class='fab fa-playstation' style='font-size:24px; float: left;'></i>
+                    {% else %}
+                        <i class='fab fa-question' style='font-size:24px; float: left;'></i>
+                    {% endif %}
+                    <div>
+                        <h4 style="padding-left: 35px">{{ post[2] }}</h4> <!-- Username -->
+                        {{ form.post_id(content=post[1], value=post[1]) }}
+                        {% if current_user.user_id == post[11] %}
+                            <button type="button" class="btn btn-primary" disabled>Your Post</button>
+                        {% elif post[4] == post[10] %}
+                            <button type="button" class="btn btn-primary" disabled>Lobby Full</button>
+                        {% elif current_user.in_post == post[1] %}
+                            <button type="button" class="btn btn-primary" disabled>Joined</button>
+                        {% elif current_user.in_post == None %}
+                            {{ form.submit(class="btn btn-primary")}}
+                        {% else %}
+                            <button type="button" class="btn btn-primary" disabled>Join</button>
+                        {% endif %}
+                    </div>
                 </div>
-            </li>
-            {% endfor %}
-        </ol>
-        
-        {{ footer|safe }}
-    </body>
-</html>
+                <div class="col-md-6" id="right-post-column">
+                    <div id="player-boxes"> <!-- Players in lobby -->
+                        {% for player in range(post[10]) -%}
+                            &#128998
+                        {% endfor %}
+                        {% for player in range(post[4] - post[10]) %}
+                            &#11036
+                        {% endfor %}
+                    </div>
+                    <p>Players: {{ post[10] }}/{{ post[4] }} </p> <!-- Player Amount -->
+                    <br>
+                    <p><ins>Description:</ins></p>
+                    <p>{{ post[6] }}</p> <!-- Post Description -->
+                </div>
+            </div>
+        </form>
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+
+{% endblock %}
