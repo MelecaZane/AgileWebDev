@@ -55,6 +55,12 @@
                     </div>
                     <p>Players: {{ post[10] }}/{{ post[4] }} </p> <!-- Player Amount -->
                     <br>
+                    {% if post[0].found_players_list != None %}
+                    {% for player in post[0].players_in_post() %}
+                        <p>&#128998{{ player }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    <br>
                     <p><ins>Description:</ins></p>
                     <p>{{ post[6] }}</p> <!-- Post Description -->
                 </div>
