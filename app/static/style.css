@@ -16,6 +16,14 @@ nav {
     text-align: center;
 }
 
+.logout-btn:hover span{
+    display: none;
+}
+
+.logout-btn:hover:before {
+    content: "Logout?";
+}
+
 .navbar-brand {
     padding-left: 12px;
 }

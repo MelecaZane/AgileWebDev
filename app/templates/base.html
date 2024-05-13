@@ -29,7 +29,7 @@
             <ul class="navbar-nav ms-auto">
                 {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout" >{{ current_user.username }}</a>
+                        <a class="nav-link logout-btn" href="/logout" ><span>{{ current_user.username }}</span></a>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="/signUp">Sign-Up</a>
