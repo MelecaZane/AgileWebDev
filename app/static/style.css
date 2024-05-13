@@ -46,7 +46,7 @@ nav {
 }
 
 #newPostBox, .Posts {
-    background-color: rgb(47, 56, 63);
+    background-color: rgba(33,37,41,255);
     color: #fff;
     border-radius: 5px;
 }
