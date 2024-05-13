@@ -13,6 +13,7 @@ from app import db, login
 @flask_app.route("/home", methods=["GET", "POST"])
 def home_page():
     sorted_posts = sorted(Post.all_posts(), key=lambda x: x.post_date, reverse=True)
+    functions.check_expired(sorted_posts)
     join_form = ExistingPostForm()
     if request.method == "GET":
         return render_template("index.html", 

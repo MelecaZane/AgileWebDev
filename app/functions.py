@@ -1,5 +1,6 @@
 from app.models import Post, Game, Platform, User
 from app import db
+from datetime import datetime, timedelta
 # Functions that are not routes themselves
 
 def add_post(post_dict, current_user):
@@ -41,3 +42,12 @@ def validate_post(post_dict):
     if description == "" or description.isspace():
         return "Description is empty"
     return True
+
+def check_expired(post_list):
+    for post in post_list:
+        if post.post_date + timedelta(hours=8) < datetime.now():
+            users = User.query.filter(User.in_post == post.post_id).all()
+            for user in users:
+                user.in_post = None
+            db.session.delete(post[0])
+            db.session.commit()
