@@ -23,6 +23,9 @@ def home_page():
     if request.method == "POST":
         post_to_update = Post.query.get(join_form.post_id.data)
         if join_form.delete.data:
+            users = User.query.filter(User.in_post == join_form.post_id.data).all()
+            for user in users:
+                user.in_post = None
             db.session.delete(post_to_update)
             db.session.commit()
             return redirect(url_for("home_page"))
