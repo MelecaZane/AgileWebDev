@@ -12,10 +12,11 @@ from app import db, login
 @flask_app.route("/index.html", methods=["GET", "POST"])
 @flask_app.route("/home", methods=["GET", "POST"])
 def home_page():
+    sorted_posts = sorted(Post.all_posts(), key=lambda x: x.post_date, reverse=True)
     join_form = ExistingPostForm()
     if request.method == "GET":
         return render_template("index.html", 
-                            posts=Post.all_posts(),
+                            posts=sorted_posts,
                             title = "Home",
                             form = join_form)
     if request.method == "POST":
@@ -30,7 +31,7 @@ def home_page():
             current_user.in_post = post_to_update.post_id
             db.session.commit()
         return render_template("index.html", 
-                            posts=Post.all_posts(),
+                            posts=sorted_posts,
                             title = "Home",
                             form = join_form)
 
