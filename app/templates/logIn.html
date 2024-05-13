@@ -18,15 +18,6 @@
                 <div class="card bg-dark mt-4">
                     <button type="button" class="btn-close" aria-label="Close" onclick="location.href='{{ url_for('home_page')}}'"></button>
                     <div class="card-body">
-                        {% with messages = get_flashed_messages() %}
-                            {% if messages %}
-                                <ul class=flashes>
-                                {% for message in messages %}
-                                    <li>{{ message }}</li>
-                                {% endfor %}
-                                </ul>
-                            {% endif %}
-                        {% endwith %}
                         <h1 class="card-title">Login</h1>
                         <br>
                         <form action="/logIn" method="post" id="login">
@@ -44,8 +35,17 @@
                                 <input id="rememberMe" type="checkbox">
                               </div>
                             <div class="mb-3 mt-4">
-                                {{form.submit(onclick="return loginVal();", class="btn btn-primary w-100", id="LoginBtn")}}
+                                {{form.submit(class="btn btn-primary w-100", id="LoginBtn")}}
                             </div>
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <ul class=flashes>
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endwith %}
                             <div class="mb-3 mt-4 text-center">
                                 <p class="normtxt">Don't have an account? <a href="#" onclick="location.href='{{ url_for('sign_up_page')}}'">Sign-Up</a></p>
                             </div>
