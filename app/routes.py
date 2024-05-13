@@ -22,6 +22,10 @@ def home_page():
                             form = join_form)
     if request.method == "POST":
         post_to_update = Post.query.get(join_form.post_id.data)
+        if join_form.delete.data:
+            db.session.delete(post_to_update)
+            db.session.commit()
+            return redirect(url_for("home_page"))
         if post_to_update.found_players < post_to_update.player_amount and current_user.is_authenticated\
             and (post_to_update.found_player_list is None or current_user.user_id not in post_to_update.found_player_list.split(",")):
             post_to_update.found_players += 1
