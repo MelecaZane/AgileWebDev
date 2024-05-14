@@ -64,7 +64,14 @@ class Post(db.Model):
         posts = Post.query.join(User, Post.post_user_id == User.user_id).join(Game, Post.post_game_id == Game.game_id).join(Platform, Post.post_platform_id == Platform.platform_id).add_columns(\
             Post.post_id, User.username, Game.game_title, Post.player_amount, Post.tags, Post.description, Post.post_date, Post.post_platform_id, Post.post_title, Post.found_players, Post.post_user_id).all()
         return posts
-
+    
+    def players_in_post(self):
+        if self.found_player_list is not None:
+            player_list = []
+            for player in self.found_player_list.split(","):
+                player_list.append(User.query.get(player).username)
+            return player_list
+        return []
 class Platform(db.Model):
     platform_id = db.Column(db.Integer, primary_key=True, nullable=False)
     platform_name = db.Column(db.String(64), nullable=False)

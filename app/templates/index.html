@@ -33,6 +33,7 @@
                         {{ form.post_id(content=post[1], value=post[1]) }}
                         {% if current_user.user_id == post[11] %}
                             <button type="button" class="btn btn-primary" disabled>Your Post</button>
+                            {{ form.delete(class="btn btn-danger") }}
                         {% elif post[4] == post[10] %}
                             <button type="button" class="btn btn-primary" disabled>Lobby Full</button>
                         {% elif current_user.in_post == post[1] %}
@@ -54,6 +55,12 @@
                         {% endfor %}
                     </div>
                     <p>Players: {{ post[10] }}/{{ post[4] }} </p> <!-- Player Amount -->
+                    <br>
+                    {% if post[0].players_in_post != [] %}
+                        {% for player in post[0].players_in_post() %}
+                            <p>&#128998{{ player }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <br>
                     <p><ins>Description:</ins></p>
                     <p>{{ post[6] }}</p> <!-- Post Description -->

@@ -20,6 +20,14 @@ nav {
     text-align: center;
 }
 
+.logout-btn:hover span{
+    display: none;
+}
+
+.logout-btn:hover:before {
+    content: "Logout?";
+}
+
 .navbar-brand {
     padding-left: 12px;
 }
@@ -107,6 +115,9 @@ nav {
 }
 
 .tag .remove-tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #035dbd;
     width: 18px;
     height: 18px;
@@ -115,6 +126,9 @@ nav {
     cursor: pointer;
     border-radius: 50%;
     font-weight: bold;
+    line-height: 18px;/
+    font-size: 12px; 
+    padding: 0; /
 }
 
 #tags-input {
