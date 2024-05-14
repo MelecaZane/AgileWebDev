@@ -12,6 +12,7 @@
         <script src="https://kit.fontawesome.com/96ce613701.js" crossorigin="anonymous"></script>
     </head>
   <body>
+    <div class="content-wrap">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="/">LOGO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,14 +36,27 @@
                         <a class="nav-link" href="/signUp">Sign-Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logIn">Login</a>
+                        <a class="nav-link" href="/howto">How-to</a>
                     </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" >{{ current_user.username }}</a>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signUp">Sign-Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logIn">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
 
-    {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
+    </div>
 
     <footer class="bg-dark" id="footer">
         <div class="container-fluid">
@@ -51,23 +65,26 @@
                     <strong>PAGES</strong>
                     <div class="footer-text">
                         <a href="/">Home</a><br>
-                        <a href="/comingsoon">About</a><br>
+                        <a href="/howto">How-to</a><br>
                         <a href="/newPost">Create Post</a>
+                    </div>
+                </div>
+                <div class="col-sm-4 footer-title text-wrap">
+                    <strong>Creators</strong>
+                    <div class="footer-text">
+                        <a href="https://github.com/MelecaZane">Zane</a><br>
+                        <a href="https://github.com/LiberoPiffaretti">Libero</a><br>
+                        <a href="https://github.com/nick-csse">Nick</a><br>
+                        <a href="https://github.com/JeetV2004">Jeet</a><br>
                     </div>
                 </div>
                 <div class="col-sm-4 footer-title text-wrap">
                     <strong>SOCIALS</strong>
                     <div class="footer-text">
-                        <a href="/comingsoon">Facebook</a><br>
-                        <a href="/comingsoon">Twitter</a><br>
-                        <a href="/comingsoon">Instagram</a><br>
-                        <a href="/comingsoon">Reddit</a>
-                    </div>
-                </div>
-                <div class="col-sm-4 footer-title text-wrap">
-                    <strong>Support Us</strong>
-                    <div class="footer-text">
-                        <a href="/comingsoon">Become a Patreon</a>
+                        <a href="https://www.facebook.com/">Facebook</a><br>
+                        <a href="https://twitter.com/?lang=en">X</a><br>
+                        <a href="https://www.instagram.com/">Instagram</a><br>
+                        <a href="https://www.reddit.com/">Reddit</a>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,10 @@ body {
     overflow-x: hidden;
 }
 
+.content-wrap {
+    flex: 1;
+}
+
 nav {
     background-color: #202123;
     text-align: center;
@@ -50,7 +54,7 @@ nav {
 }
 
 #newPostBox, .Posts {
-    background-color: rgb(47, 56, 63);
+    background-color: rgb(47,56,63);
     color: #fff;
     border-radius: 5px;
 }
