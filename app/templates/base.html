@@ -38,23 +38,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/howto">How-to</a>
                     </li>
-                </ul>
-                <ul class="navbar-nav ms-auto">
-                    {% if current_user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout" >{{ current_user.username }}</a>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/signUp">Sign-Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logIn">Login</a>
-                        </li>
-                    {% endif %}
+                {% endif %}
                 </ul>
             </div>
         </nav>
-
         {% block content %}{% endblock %}
     </div>
 
