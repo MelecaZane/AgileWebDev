@@ -12,14 +12,23 @@ from app import db, login
 @flask_app.route("/index.html", methods=["GET", "POST"])
 @flask_app.route("/home", methods=["GET", "POST"])
 def home_page():
+    sorted_posts = sorted(Post.all_posts(), key=lambda x: x.post_date, reverse=True)
+    functions.check_expired(sorted_posts)
     join_form = ExistingPostForm()
     if request.method == "GET":
         return render_template("index.html", 
-                            posts=Post.all_posts(),
+                            posts=sorted_posts,
                             title = "Home",
                             form = join_form)
     if request.method == "POST":
         post_to_update = Post.query.get(join_form.post_id.data)
+        if join_form.delete.data:
+            users = User.query.filter(User.in_post == join_form.post_id.data).all()
+            for user in users:
+                user.in_post = None
+            db.session.delete(post_to_update)
+            db.session.commit()
+            return redirect(url_for("home_page"))
         if post_to_update.found_players < post_to_update.player_amount and current_user.is_authenticated\
             and (post_to_update.found_player_list is None or current_user.user_id not in post_to_update.found_player_list.split(",")):
             post_to_update.found_players += 1
@@ -30,7 +39,7 @@ def home_page():
             current_user.in_post = post_to_update.post_id
             db.session.commit()
         return render_template("index.html", 
-                            posts=Post.all_posts(),
+                            posts=sorted_posts,
                             title = "Home",
                             form = join_form)
 

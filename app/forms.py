@@ -11,6 +11,7 @@ class LoginForm(FlaskForm):
 class ExistingPostForm(FlaskForm):
     post_id = HiddenField()
     submit = SubmitField('Join')
+    delete = SubmitField('Delete Post')
 
 class SignUpForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
