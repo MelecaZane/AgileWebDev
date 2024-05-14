@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {{ head|safe }}
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/static/style.css">
+        <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         // Set the launch date
@@ -32,16 +37,13 @@
 </head>
 <body>
 
-    {{ navbar|safe }}
-
-    <div style="text-align: center; padding: 50px; color: white;">
-        <h2 style="font-size: 36px; color: white; font-family: 'Arial', sans-serif;">We're Preparing Something Awesome!</h2>
-        <p style="font-size: 18px; color: white; font-family: 'Arial', sans-serif;">Thank you for your patience and stay tuned for updates.</p>
+    <div style="text-align: center; padding: 50px;">
+        <h2 style="font-size: 36px; ; font-family: 'Arial', sans-serif;">We're Preparing Something Awesome!</h2>
+        <p style="font-size: 18px;font-family: 'Arial', sans-serif;">Thank you for your patience and stay tuned for updates.</p>
         <img src="https://image.winudf.com/v2/image/bXBsLmNvbS5jb21pbmdzb29uX3NjcmVlbl8wXzE1MzQ3NTgxODFfMDQ0/screen-0.jpg?fakeurl=1&type=.jpg" alt="Descarga de APK de Coming Soon para Android" style="width: 400px; height: auto; margin-top: 20px;">
-        <p id="countdown" style="font-size: 24px; color: white; font-family: 'Arial', sans-serif;"></p>
+        <p id="countdown" style="font-size: 24px; font-family: 'Arial', sans-serif;"></p>
     </div>
 
 
-    {{ footer|safe }}
 </body>
 </html>
