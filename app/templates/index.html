@@ -15,7 +15,7 @@
                     <p> <!-- Tags -->
                         {% if post[5] != "" %}
                             {% for tag in post[5]|tag_list %}
-                            #{{ tag }},
+                            <span class="tag">{{ tag }}</span>
                             {% endfor %}
                         {% endif %}
                     </p>
