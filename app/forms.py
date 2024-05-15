@@ -21,3 +21,7 @@ class SignUpForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Password2', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
+
+class FilterForm(FlaskForm):
+    game = SelectField('Game', validators=[DataRequired()])
+    submit = SubmitField('Search')

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required, login_user, logout_user
 from app import flask_app
-from app.forms import LoginForm, ExistingPostForm, SignUpForm
+from app.forms import LoginForm, ExistingPostForm, SignUpForm, FilterForm
 from app.models import Post, Game, Platform, User
 from app import template_filters
 from app import functions
@@ -15,33 +15,43 @@ def home_page():
     sorted_posts = sorted(Post.all_posts(), key=lambda x: x.post_date, reverse=True)
     functions.check_expired(sorted_posts)
     join_form = ExistingPostForm()
+    filter_form = FilterForm() 
+    filter_form.game.choices = ['All'] + [game.game_title for game in Game.query.all()]
     if request.method == "GET":
         return render_template("index.html", 
                             posts=sorted_posts,
                             title = "Home",
-                            form = join_form)
+                            form = join_form,
+                            filters = filter_form)
     if request.method == "POST":
-        post_to_update = Post.query.get(join_form.post_id.data)
-        if join_form.delete.data:
-            users = User.query.filter(User.in_post == join_form.post_id.data).all()
-            for user in users:
-                user.in_post = None
-            db.session.delete(post_to_update)
-            db.session.commit()
-            return redirect(url_for("home_page"))
-        if post_to_update.found_players < post_to_update.player_amount and current_user.is_authenticated\
-            and (post_to_update.found_player_list is None or current_user.user_id not in post_to_update.found_player_list.split(",")):
-            post_to_update.found_players += 1
-            if post_to_update.found_player_list is None:
-                post_to_update.found_player_list = str(current_user.user_id)
-            else:
-                post_to_update.found_player_list += "," + str(current_user.user_id)
-            current_user.in_post = post_to_update.post_id
-            db.session.commit()
+        if filter_form.is_submitted():
+            print(filter_form.game.data)
+            if filter_form.game.data not in ["All", None]:
+                sorted_posts = [post for post in sorted_posts if post[3] == filter_form.game.data]
+                print(sorted_posts)
+        if join_form.validate_on_submit():
+            post_to_update = Post.query.get(join_form.post_id.data)
+            if join_form.delete.data:
+                users = User.query.filter(User.in_post == join_form.post_id.data).all()
+                for user in users:
+                    user.in_post = None
+                db.session.delete(post_to_update)
+                db.session.commit()
+                return redirect(url_for("home_page"))
+            if post_to_update.found_players < post_to_update.player_amount and current_user.is_authenticated\
+                and (post_to_update.found_player_list is None or current_user.user_id not in post_to_update.found_player_list.split(",")):
+                post_to_update.found_players += 1
+                if post_to_update.found_player_list is None:
+                    post_to_update.found_player_list = str(current_user.user_id)
+                else:
+                    post_to_update.found_player_list += "," + str(current_user.user_id)
+                current_user.in_post = post_to_update.post_id
+                db.session.commit()
         return render_template("index.html", 
                             posts=sorted_posts,
                             title = "Home",
-                            form = join_form)
+                            form = join_form,
+                            filters = filter_form)
 
 @login.unauthorized_handler
 def unauthorized():
@@ -90,7 +100,6 @@ def login_page():
             return render_template("logIn.html", 
                                 title="Login",        
                                 form = login_form)
-        
         password = login_form.password.data
         if not user.check_password(password):
             flash("Incorrect password.", 'error')

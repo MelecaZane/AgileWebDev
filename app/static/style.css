@@ -40,7 +40,7 @@ nav {
     color: #ff5b5b;
 }
 
-#mainPosts, #newPostHead, #steps, #newPostBox, .Posts {
+#mainPosts, #newPostHead, #steps, #newPostBox, .Posts, #filters {
     padding-top: 10px;
 }
 
@@ -126,9 +126,9 @@ nav {
     cursor: pointer;
     border-radius: 50%;
     font-weight: bold;
-    line-height: 18px;/
+    line-height: 18px;
     font-size: 12px; 
-    padding: 0; /
+    padding: 0; 
 }
 
 #tags-input {
