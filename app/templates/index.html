@@ -5,13 +5,21 @@
 <div class ="container mt-5" id="filters">
     <form method="POST">
         <div class="row">
-            <div class="col-md-6"><p>Game:</p>{{filters.game(class="form-select")}} </div>
-            <div class="col-md-6"><p>Platform:</p>{{filters.platform(class="form-select")}} {{filters.submit(class="btn btn-primary")}}</div>
+            <div class="col-md-6">
+                <p>Game:</p>{{filters.game(class="form-select")}} 
+            </div>
+            <div class="col-md-6">
+                <p>Platform:</p>
+                {{filters.platform(class="form-select")}}
+                <div class="col-12 mt-2 d-flex justify-content-end">     
+                    {{filters.submit(class="btn btn-primary")}}
+                </div>
+            </div>
         </div>
     </form>
 </div>
     
-<div class="container mt-5" id="mainPosts">
+<div class="container" id="mainPosts">
     <ol>
         {% for post in posts %}
         <li class="Posts" id="{{ post[1] }}">
