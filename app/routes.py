@@ -17,6 +17,7 @@ def home_page():
     filter_form = FilterForm() 
     join_form = ExistingPostForm()
     filter_form.game.choices = ['All'] + [game.game_title for game in Game.query.all()]
+    filter_form.platform.choices = ['All'] + [platform.platform_name for platform in Platform.query.all()]
     if request.method == "GET":
         return render_template("index.html", 
                             posts=sorted_posts,
@@ -26,9 +27,13 @@ def home_page():
     if request.method == "POST":
         if filter_form.submit.data:
             print(filter_form.game.data)
-            if filter_form.game.data not in ["All", None]:
+            if filter_form.game.data not in ["All", None]: # Game filter
                 sorted_posts = [post for post in sorted_posts if post[3] == filter_form.game.data]
-                print(sorted_posts)
+                if filter_form.platform.data not in ["All", None]: # Platform filter
+                    sorted_posts = [post for post in sorted_posts if post[8] == Platform.query.filter(Platform.platform_name == filter_form.platform.data).first().platform_id]
+            else: # No game filter
+                if filter_form.platform.data not in ["All", None]: # Platform filter
+                    sorted_posts = [post for post in sorted_posts if post[8] == Platform.query.filter(Platform.platform_name == filter_form.platform.data).first().platform_id]
         if join_form.submit.data:
             post_to_update = Post.query.get(join_form.post_id.data)
             if post_to_update is not None:

@@ -24,4 +24,5 @@ class SignUpForm(FlaskForm):
 
 class FilterForm(FlaskForm):
     game = SelectField('Game', validators=[DataRequired()])
+    platform = SelectField('Platform', validators=[DataRequired()])
     submit = SubmitField('Search')

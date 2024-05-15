@@ -11,6 +11,7 @@ body {
     overflow-x: hidden;
 }
 
+
 .content-wrap {
     flex: 1;
 }
@@ -44,6 +45,9 @@ nav {
     padding-top: 10px;
 }
 
+p {
+    color: aliceblue;
+}
 #mainPosts {
     padding-top: 10px;
 }

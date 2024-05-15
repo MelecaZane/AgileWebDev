@@ -72,6 +72,7 @@ class Post(db.Model):
                 player_list.append(User.query.get(player).username)
             return player_list
         return []
+    
 class Platform(db.Model):
     platform_id = db.Column(db.Integer, primary_key=True, nullable=False)
     platform_name = db.Column(db.String(64), nullable=False)
