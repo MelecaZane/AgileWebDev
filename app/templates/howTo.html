@@ -2,23 +2,19 @@
 {% block title %} {{ title }} {% endblock %}
 {% block content %}
     <!-- Steps section -->
-    <div  class="container mt-5 mb-5" id="steps">
+    <div class="container mt-5 mb-5" id="steps">
         <!-- Step 1 -->
-        <h2>Step 1</h2>
-        <p>Sign up and create an account or sign in to your LFG account.</p>
-        <p>(Image would go in here where they can sign up or sign in.)</p>
-
-        <!-- Step 2 -->
-        <h2>Step 2</h2>
-        <p>Choose a game where you want to join or create a group.</p>
-        <p>(Image of where users can join or create groups.)</p>
-
-        <!-- Step 3 -->
-        <h2>Step 3</h2>
-        <p>Enter the requirements or skills you have to create or join a group.</p>
-
-        <!-- Step 4 -->
-        <h2>Step 4</h2>
-        <p>Have fun!</p>
+        <div class="step">
+            <h2>Step 1: Sign Up or Sign In</h2>
+            <p>Welcome to LFG! Follow the steps below to get started:</p>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li>If you're new to LFG, <a href="/signUp" class="btn btn-primary btn-sm" style="background-color: black; color: white;">Sign Up</a> and create an account.</li>
+                <li>If you already have an account, <a href="/logIn" class="btn btn-secondary btn-sm" style="background-color: black; color: white;">Sign In</a> to access your LFG profile.</li>
+            </ul>
+            <!-- Adding the image for Step 1 -->
+            <div class="step-image">
+                <img src="static/images/SignUp.PNG" alt="Signup">
+            </div>
+        </div>
     </div>
 {% endblock %}
